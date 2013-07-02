@@ -1,5 +1,16 @@
+marked.setOptions({
+  gfm: true,
+  highlight: function(code, lang) {
+    var highlighted;
+    Rainbow.color(code, lang, function(result) {
+      highlighted = result;
+    });
+    return highlighted;
+  }
+});
+
 function displayIdea(response) {
-  var html = markdown.toHTML(response);
+  var html = marked(response);
   document.getElementById('idea').innerHTML = html;
 
   var headings = document.getElementsByTagName('h1');
