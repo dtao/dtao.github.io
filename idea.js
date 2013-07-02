@@ -22,7 +22,10 @@ function makeAjaxRequest(url, callback) {
 }
 
 window.addEventListener('load', function() {
-  makeAjaxRequest('/ideas/abusing-404.md', displayIdea);
+  var ideaName = window.location.pathname.match(/ideas\/(.*)$/);
+  if (ideaName) {
+    makeAjaxRequest('/ideas/' + ideaName[1] + '.md', displayIdea);
+  }
 
   document.getElementById('path').textContent = window.location.pathname;
 });
