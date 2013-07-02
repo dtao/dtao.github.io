@@ -1,7 +1,3 @@
-function isMarkdownFile(file) {
-  return file && file.name && file.name.match(/\.md$|\.markdown$/);
-}
-
 function displayIdea(response) {
   var html = markdown.toHTML(response);
   document.getElementById('idea').innerHTML = html;
