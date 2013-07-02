@@ -1,0 +1,43 @@
+@import 'common';
+
+main {
+  .centered;
+}
+
+main h1 {
+  position: absolute;
+  top: 62.5px;
+  left: 125px;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5px;
+  line-height: 62.5px;
+}
+
+nav ul {
+  .nav-list;
+  position: absolute;
+  bottom: 125px;
+  right: 125px;
+  margin: 0;
+  padding: 0;
+}
+
+#backdrop {
+  .centered;
+  z-index: -1;
+}
+
+.loading {
+  .transition(3s);
+  .transparent();
+}
+
+.loaded {
+  .transition(3s);
+  .transparent(1);
+}
+
+.loaded img {
+  .transparent(0.25);
+}
