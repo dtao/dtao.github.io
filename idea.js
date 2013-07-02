@@ -22,6 +22,6 @@ function makeAjaxRequest(url, callback) {
 }
 
 window.addEventListener('load', function() {
-  makeAjaxRequest('ideas/abusing-404.md', displayIdea);
+  makeAjaxRequest('/ideas/abusing-404.md', displayIdea);
   document.getElementById('path').textContent = window.location.pathname;
 });
