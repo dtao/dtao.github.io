@@ -34,10 +34,22 @@
   }
 
   footer {
+    .transparent(0.9);
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    background: #fff;
+  }
+}
+
+@media all and (max-width: 799px) {
+  footer {
+    text-align: right;
+  }
+
+  #path {
+    display: none;
   }
 }
 
