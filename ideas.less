@@ -1,15 +1,24 @@
 @import 'common';
 
 @media all and (min-width: 800px) {
-  main {
+  section {
     position: absolute;
-    top: 25%;
-    bottom: 25%;
-    left: 25%;
+    top: 15%;
+    bottom: 15%;
 
     h1 {
       font-size: 62.5px;
     }
+  }
+
+  section:nth-child(1) {
+    left: 15%;
+    width: 35%;
+  }
+
+  section:nth-child(2) {
+    left: 60%;
+    width: 35%;
   }
 
   #idea {
@@ -53,7 +62,7 @@
   }
 }
 
-#ideas {
+#ideas, #opinions {
   .nav-list;
 }
 
