@@ -10,6 +10,14 @@ marked.setOptions({
 });
 
 function displayIdea(response) {
+  // If this isn't a valid path, we'll just get the full 404 page back.
+  // In which case, let's not try and inject an entire HTML document into
+  // the DOM.
+  if (response.substring(0, 15) === '<!DOCTYPE html>') {
+    displayIdea('**Nothing to see here.**');
+    return;
+  }
+
   var html = marked(response);
   document.getElementById('idea').innerHTML = html;
 
