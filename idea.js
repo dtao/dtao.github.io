@@ -33,6 +33,14 @@ function makeAjaxRequest(url, callback) {
   request.send();
 }
 
+function getCacheBuster() {
+  // Only use a cache buster for local testing.
+  if (window.location.hostname === 'localhost') {
+    return '?' + Math.floor(Math.random() * 1000000);
+  }
+  return '';
+}
+
 function loadIdeaForLocation() {
   var ideaName = window.location.pathname.match(/ideas\/(.*)$/);
 
@@ -41,7 +49,7 @@ function loadIdeaForLocation() {
   }
 
   if (ideaName) {
-    makeAjaxRequest('/ideas/' + ideaName[1] + '.md', displayIdea);
+    makeAjaxRequest('/ideas/' + ideaName[1] + '.md' + getCacheBuster(), displayIdea);
   }
 }
 
