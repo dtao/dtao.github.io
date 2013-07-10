@@ -1,101 +1,17 @@
 @import 'common';
 
-@media all and (min-width: 800px) {
-  section {
-    position: absolute;
-    top: 15%;
-    bottom: 15%;
-
-    h1 {
-      font-size: 62.5px;
-    }
-  }
-
-  section:nth-child(1) {
-    left: 15%;
-  }
-
-  section:nth-child(2) {
-    left: 60%;
-  }
-
-  #content {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 40%;
-    padding: 20px;
-    padding-bottom: 60px;
-    overflow: auto;
-    background-color: #eee;
-  }
-
-  #comments {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 60%;
-    right: 0;
-    padding: 20px;
-  }
-
-  footer {
-    .transparent(0.9);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-  }
-}
-
-@media all and (min-width: 800px) and (max-width: 1299px) {
-  section {
-    width: 35%;
-  }
-}
-
-@media all and (max-width: 799px) {
-  footer {
-    margin-top: 20px;
-    background-color: #000;
-    text-align: right;
-
-    a {
-      color: #fff !important;
-    }
-  }
-
-  #path {
-    display: none;
-  }
-}
-
 #ideas, #opinions {
   .nav-list;
 }
 
 #idea {
-  h1 {
-    font-size: 32px;
-  }
+  font-family: Cambria, Georgia, serif;
 
-  h2 {
-    font-size: 24px;
-  }
-
-  h3 {
-    font-size: 20px;
-  }
-
-  p, code {
-    font-size: 16px;
-  }
-
-  code {
-    color: darken(#0f82f5, 10%);
-  }
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  p, code, li { font-size: 16px; }
+  code { color: darken(#0f82f5, 10%); }
 }
 
 #voting {
@@ -156,5 +72,84 @@ footer {
     &:hover {
       color: #999;
     }
+  }
+}
+
+@media all and (min-width: 800px) {
+  section {
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+
+    h1 {
+      font-size: 62.5px;
+    }
+  }
+
+  section:nth-child(1) {
+    left: 15%;
+  }
+
+  section:nth-child(2) {
+    left: 60%;
+  }
+
+  #content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 40%;
+    padding: 20px;
+    padding-bottom: 60px;
+    overflow: auto;
+    background-color: #eee;
+  }
+
+  #idea {
+    h1 { font-size: 40px; }
+    h2 { font-size: 36px; }
+    h3 { font-size: 32px; }
+    p, code, li { font-size: 20px; }
+  }
+
+  #comments {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 60%;
+    right: 0;
+    padding: 20px;
+  }
+
+  footer {
+    .transparent(0.9);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+  }
+}
+
+@media all and (min-width: 800px) and (max-width: 1299px) {
+  section {
+    width: 35%;
+  }
+}
+
+@media all and (max-width: 799px) {
+  footer {
+    margin-top: 20px;
+    background-color: #000;
+    text-align: right;
+
+    a {
+      color: #fff !important;
+    }
+  }
+
+  #path {
+    display: none;
   }
 }
