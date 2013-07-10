@@ -19,7 +19,7 @@
     left: 60%;
   }
 
-  #idea {
+  #content {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -95,6 +95,47 @@
 
   code {
     color: darken(#0f82f5, 10%);
+  }
+}
+
+#voting {
+  float: right;
+  min-width: 120px;
+  text-align: center;
+
+  .voting-box {
+    margin-bottom: 12px;
+  }
+
+  button {
+    .transition(0.5s);
+    .transparent(0.5);
+
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:hover {
+      .transition(0.5s);
+      .transparent(1);
+    }
+
+    &.voted {
+      .transparent(1);
+    }
+
+    &#vote-up {
+      background: url('/vote-up.png') no-repeat center;
+    }
+
+    &#vote-down {
+      background: url('/vote-down.png') no-repeat center;
+    }
   }
 }
 

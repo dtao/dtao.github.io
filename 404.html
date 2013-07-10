@@ -10,7 +10,7 @@
     <script type="text/javascript" src="http://lesscss.org/js/less.js"></script>
     <script type="text/javascript" src="/lib/disqus.js"></script>
     <script type="text/javascript" src="/lib/ga.js"></script>
-    <script type="text/javascript" src="http://danieltao.com/lazy.js/lazy.js"></script>
+    <script type="text/javascript" src="http://up-down.herokuapp.com/updown.js"></script>
     <script type="text/javascript" src="/lib/marked.js"></script>
     <script type="text/javascript" src="/lib/rainbow.js"></script>
     <script type="text/javascript" src="/lib/language/javascript.js"></script>
@@ -20,7 +20,18 @@
 </head>
 
 <body>
-    <article id="idea"></article>
+    <section id="content">
+        <div id="voting">
+            <div class="voting-box">
+                <button id="vote-up"></button>
+                <div id="upvote-count">...</div>
+            </div>
+            <div class="voting-box">
+                <button id="vote-down"></button>
+                <div id="downvote-count">...</div>
+            </div>
+        </div>
+    </section>
 
     <section id="comments">
         <div id="disqus_thread"></div>
