@@ -110,7 +110,13 @@ footer {
     h1 { font-size: 40px; }
     h2 { font-size: 36px; }
     h3 { font-size: 32px; }
-    p, code, li { font-size: 20px; }
+    p, code, li {
+      font-size: 20px;
+      &:last-child {
+        margin-bottom: 60px;
+        padding-bottom: 60px;
+      }
+    }
   }
 
   #comments {
