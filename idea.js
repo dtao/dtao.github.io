@@ -18,7 +18,7 @@ function displayIdea(response) {
     return;
   }
 
-  var html = marked(response);
+  var html = marked(response).replace(/--/g, '&mdash;');
   var article = document.createElement('article');
   article.id = 'idea';
   article.innerHTML = html;
