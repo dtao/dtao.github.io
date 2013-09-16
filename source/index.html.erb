@@ -4,11 +4,9 @@
 <head>
     <title>Dan Tao</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="stylesheet/less" type="text/css" href="common.less" />
-    <link rel="stylesheet/less" type="text/css" href="index.less" />
-    <script type="text/javascript" src="http://lesscss.org/js/less.js"></script>
-    <script type="text/javascript" src="/lib/ga.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+    <%= stylesheet_link_tag "index" %>
+    <%= javascript_include_tag "lib/ga.js" %>
+    <%= javascript_include_tag "index" %>
 </head>
 
 <body class="loading">

@@ -1,14 +1,3 @@
-marked.setOptions({
-  gfm: true,
-  highlight: function(code, lang) {
-    var highlighted;
-    Rainbow.color(code, lang, function(result) {
-      highlighted = result;
-    });
-    return highlighted;
-  }
-});
-
 function displayIdea(response) {
   // If this isn't a valid path, we'll just get the full 404 page back.
   // In which case, let's not try and inject an entire HTML document into
@@ -18,16 +7,23 @@ function displayIdea(response) {
     return;
   }
 
-  var html = marked(response).replace(/--/g, '&mdash;');
+  var html = response.replace(/--/g, '&mdash;');
   var article = document.createElement('article');
   article.id = 'idea';
   article.innerHTML = html;
 
   document.getElementById('content').appendChild(article);
 
-  var headings = article.querySelector('h1');
-  if (headings.length > 0) {
-    document.title = 'Dan Tao - ' + headings[0].textContent;
+  var codeBlocks = article.querySelectorAll('pre > code');
+  forEach(codeBlocks, function(codeBlock, i) {
+    Rainbow.color(codeBlock.textContent, codeBlock.className, function(highlightedHtml) {
+      codeBlock.innerHTML = highlightedHtml;
+    });
+  });
+
+  var heading = article.querySelector('h1');
+  if (heading) {
+    document.title = 'Dan Tao - ' + heading.textContent;
   }
 }
 
@@ -61,7 +57,7 @@ function loadIdeaForLocation() {
   }
 
   if (ideaName) {
-    makeAjaxRequest('/ideas/' + ideaName[1] + '.md' + getCacheBuster(), displayIdea);
+    makeAjaxRequest('/ideas/' + ideaName[1] + '.html' + getCacheBuster(), displayIdea);
   }
 }
 
@@ -94,6 +90,12 @@ function removeClass(element, className) {
     var classes = element.className.split(/\s+/);
     removeFromArray(classes, className);
     element.className = classes.join(' ');
+  }
+}
+
+function forEach(array, fn) {
+  for (var i = 0; i < array.length; ++i) {
+    fn(array[i], i);
   }
 }
 
