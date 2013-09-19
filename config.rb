@@ -45,10 +45,8 @@
 #   end
 # end
 
-# require 'kramdown'
 require 'less'
-# require 'rdiscount'
-require 'redcarpet'
+
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true
 
