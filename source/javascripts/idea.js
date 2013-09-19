@@ -14,12 +14,7 @@ function displayIdea(response) {
 
   document.getElementById('content').appendChild(article);
 
-  var codeBlocks = article.querySelectorAll('pre > code');
-  forEach(codeBlocks, function(codeBlock, i) {
-    Rainbow.color(codeBlock.textContent, codeBlock.className, function(highlightedHtml) {
-      codeBlock.innerHTML = highlightedHtml;
-    });
-  });
+  highlightAll();
 
   var heading = article.querySelector('h1');
   if (heading) {
