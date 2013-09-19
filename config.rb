@@ -20,9 +20,13 @@
 # page "/path/to/file.html", :layout => :otherlayout
 #
 # A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
-# end
+with_layout :idea do
+  page "/ideas/*"
+end
+
+# Need this because otherwise Middleman tries to apply the 'idea' layout even to
+# ideas/index.html (understandably, I guess).
+page "/ideas", :layout => false
 
 # Proxy pages (http://middlemanapp.com/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {

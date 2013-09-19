@@ -1,58 +1,10 @@
-function displayIdea(response) {
-  // If this isn't a valid path, we'll just get the full 404 page back.
-  // In which case, let's not try and inject an entire HTML document into
-  // the DOM.
-  if (response.substring(0, 15) === '<!DOCTYPE html>') {
-    displayIdea('**Nothing to see here.**');
-    return;
-  }
+//= require_directory ./lib
+//= require highlighting
 
-  var html = response.replace(/--/g, '&mdash;');
-  var article = document.createElement('article');
-  article.id = 'idea';
-  article.innerHTML = html;
-
-  document.getElementById('content').appendChild(article);
-
-  highlightAll();
-
-  var heading = article.querySelector('h1');
+function updateDocumentTitle() {
+  var heading = document.getElementById('idea').querySelector('h1');
   if (heading) {
     document.title = 'Dan Tao - ' + heading.textContent;
-  }
-}
-
-function makeAjaxRequest(url, callback) {
-  var request = new XMLHttpRequest();
-  request.open('GET', url);
-  request.responseType = 'text';
-
-  request.onreadystatechange = function() {
-    if (request.readyState === 4) {
-      callback(request.response);
-    }
-  };
-
-  request.send();
-}
-
-function getCacheBuster() {
-  // Only use a cache buster for local testing.
-  if (window.location.hostname === 'localhost') {
-    return '?' + Math.floor(Math.random() * 1000000);
-  }
-  return '';
-}
-
-function loadIdeaForLocation() {
-  var ideaName = window.location.pathname.match(/ideas\/(.*)$/);
-
-  if (!ideaName) {
-    ideaName = window.location.search.match(/\bidea=([^&]*)/);
-  }
-
-  if (ideaName) {
-    makeAjaxRequest('/ideas/' + ideaName[1] + '.html' + getCacheBuster(), displayIdea);
   }
 }
 
@@ -85,12 +37,6 @@ function removeClass(element, className) {
     var classes = element.className.split(/\s+/);
     removeFromArray(classes, className);
     element.className = classes.join(' ');
-  }
-}
-
-function forEach(array, fn) {
-  for (var i = 0; i < array.length; ++i) {
-    fn(array[i], i);
   }
 }
 
@@ -158,7 +104,8 @@ function initVotingButtons() {
 }
 
 window.addEventListener('load', function() {
-  loadIdeaForLocation();
+  highlightAll();
+  updateDocumentTitle();
   displayPathInFooter();
   initVotingButtons();
 });
