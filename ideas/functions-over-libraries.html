@@ -1,0 +1,95 @@
+<h1>Functions over (JavaScript) libraries</h1>
+
+<p>I should preface this by saying I barely know what I&#39;m talking about. I haven&#39;t bothered to learn
+the ins and outs, or even the rationale (in full), of any JavaScript module pattern/library/toolkit
+such as CommonJS, AMD, etc.</p>
+
+<p>That said, here&#39;s an opinion I just wanted to sort of float out there. It&#39;s something I idly
+suggested to some of my old ThoughtWorks colleagues back in the day, with generally lukewarm
+responses. I attribute that to my failure to explain the idea very well (a failure I may very well
+repeat right now).</p>
+
+<h2>The library-based paradigm</h2>
+
+<p>Recently a couple of libraries have undertaken the major task of modularization. I&#39;m not sure if
+that&#39;s a &quot;word&quot;; but it should be clear enough what I mean: breaking down their various
+functionalities into individually consumable parts. <a href="http://lodash.com/">Lo-Dash</a> is the one I&#39;m
+most acutely aware of because I follow <a href="https://twitter.com/jdalton">@jdalton</a> on Twitter and he&#39;s
+been pretty vocal lately about their efforts on this front.</p>
+
+<p>I think this is a great thing. But I don&#39;t think it&#39;s the <em>best</em> thing.</p>
+
+<p>What I think would be even better is this: fewer big libraries, more standalone functions.</p>
+
+<p>The whole reason we see this modularization is that there are devs who want very specific
+functionality; and maybe it&#39;s trivial to write it yourself, but wouldn&#39;t it be better to have
+standard,  battle-tested implementations that we all share? And so maybe I want an <code>extend()</code> method
+to add a bunch of properties to an object. And I want a nice robust one, with validation and bells
+and whistles. So I pull in Lo-Dash, or Underscore, or whatever, just for that one method.</p>
+
+<p>Boo hoo, now I&#39;ve got a big library dependency for something so small. So again: I get it. Being
+able to depend on <em>just</em> Lo-Dash:extend is a good thing.</p>
+
+<p>But <strong>why does Lo-Dash need to be so big in the first place?</strong> Why <em>was</em> it huge, and now the team
+has broken it down into smaller consumable pieces? Why wasn&#39;t there just an <code>extend()</code> library (more
+like &quot;library&quot;)--with none of the other stuff in Lo-Dash--to begin with?</p>
+
+<p>This isn&#39;t a rhetorical question. I think I know the answer: because our whole ecosystem is designed
+around the concept of a library.</p>
+
+<h2>How developers share code</h2>
+
+<p>There are two ways that developers share their code today. One is by publishing &quot;projects&quot;, which
+are repositories (increasingly Git repositories hosted on GitHub) containing potentially lots of
+functionality. Sure, some of these are small; but the norm is that they are pretty large. And around
+this paradigm there arise package management solutions like RubyGems, NPM, NuGet, Maven. I&#39;m
+guessing most devs would view this as the &quot;right&quot; way to share code.</p>
+
+<p>Here&#39;s the other way, which I think most devs would consider a &quot;hacky&quot; or just flat-out &quot;wrong&quot; way
+to share code: by posting snippets online, for others to copy/paste. This is the stuff of
+<a href="http://stackoverflow.com/">StackOverflow</a> answers, blog posts, and
+<a href="https://gist.github.com/">Gists</a>.</p>
+
+<p>The second way is perceived as hacky because it isn&#39;t very standardized. There are no package
+managers (that I&#39;m aware of) that scour StackOverflow. But here&#39;s what I like about the second way:
+<strong>the units of code are very small</strong>. Nobody posts a &quot;library&quot; in a StackOverflow answer. Typically
+the OP has a problem, and helpful users propose solutions to that specific problem in the form of a
+single function (or a handful of tightly-coupled functions).</p>
+
+<p>Imagine if we had an ecosystem where instead of a &quot;package&quot; being a library, a &quot;package&quot; was just a
+function.</p>
+
+<h2>A proposal for a function-based paradigm</h2>
+
+<p>Actually, here&#39;s what I&#39;d really like to see: somebody defines an abstract piece of functionality.
+They give it a name, a description, and (ideally) some unit tests. Now any developer can take a
+crack at implementing it. Implementations get submitted to a registry, where they are classified
+under this abstract functionality. Subsequently, other developers can require the functionality on
+their projects.</p>
+
+<p>Here&#39;s a concrete example. Let&#39;s say I need a function to split an array into chunks of size N.
+Maybe our hypothetical registry includes an entry called &quot;chunk&quot;; I look it up, read the
+description, and decide that&#39;s exactly what I need. (Or, I don&#39;t find it; so I write up a
+description myself and submit that.)</p>
+
+<p>Now, there are a few implementations of this already registered: one by dtao, one by jschmoe, and
+one by jqpublic. I could <code>require(&#39;chunk/dtao&#39;)</code> to get dtao&#39;s implementation; or I could just
+<code>require(&#39;chunk/*&#39;)</code> to get whatever the &quot;best&quot; one is (determined, say, via some voting mechanism,
+or just by download count).</p>
+
+<p>Note that there&#39;s nothing stopping these functions from requiring one another. So we could still
+have something similar to libraries. Maybe we could even group together a whole bunch of functions
+under some umbrella term and brand it, so you could still have <code>require(&#39;lodash&#39;)</code> or whatever, as a
+convenient shortcut for requiring lots of functionality. But by default, everything would be much
+more fine-grained than it is today.</p>
+
+<p>Now you might say, &quot;Well, that&#39;s exactly what these libraries have done by modularizing, so what are
+you protesting?&quot; My issue is that these libraries--Lo-Dash, and I believe jQuery as well--shouldn&#39;t
+have to put all this effort into what they&#39;re doing. They&#39;re swimming upstream, fighting against the
+norm that we currently have. I&#39;m proposing that if we lived in a world where the standard unit of
+code were a <em>function</em>, not a library, they wouldn&#39;t find themselves in this mess.</p>
+
+<p>Anyway, I am clearly the pot calling the kettle black here as I have <a href="https://github.com/dtao?tab=repositories">my own share of JavaScript
+libraries</a> which are in no way modularized. But I would
+still like to see this happen. It&#39;s in the back of my mind as something I may attempt to get off the
+ground at some point in the future.</p>

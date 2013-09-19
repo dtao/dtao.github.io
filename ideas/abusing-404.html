@@ -1,0 +1,5 @@
+<h1>Abusing the 404 error page</h1>
+
+<p>GitHub lets you put up a custom 404 page for custom domains. I had this idea that you could use the 404 page as your main layout and then use the path displayed in the browser&#39;s address bar to dynamically fetch content.</p>
+
+<p>That&#39;s what I&#39;m doing here. See how the address bar says &#39;abusing-404&#39;? There&#39;s JavaScript on this page that takes that (from <code>window.location.pathname</code>), fetches <code>abusing-404.md</code> with an <code>XMLHttpRequest</code>, and then uses <strike><a href="https://github.com/evilstreak/markdown-js">markdown-js</a></strike> <a href="https://github.com/chjj/marked">marked</a> to render the response as HTML.</p>
