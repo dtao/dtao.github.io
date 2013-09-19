@@ -1,4 +1,30 @@
-<h1>A simple voting system</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/lib/github.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://up-down.herokuapp.com/updown.js"></script>
+    <script src="/javascripts/idea.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <section id="content">
+        <div id="voting">
+            <div class="voting-box">
+                <button id="vote-up"></button>
+                <div id="upvote-count">...</div>
+            </div>
+            <div class="voting-box">
+                <button id="vote-down"></button>
+                <div id="downvote-count">...</div>
+            </div>
+        </div>
+
+        <article id="idea">
+            <h1>A simple voting system</h1>
 
 <p>Sometimes I propose an idea and I&#39;d just like to know whether people generally like or dislike it. This site is a perfect example. I added <a href="http://disqus.com/">Disqus</a> comments over there on the right (or down below if you&#39;re reading this on a phone); but I don&#39;t really expect people to use them that much. <em>Comments</em> are pretty heavyweight: they require you to think about what you want to say, type it all out, proofread it (if you&#39;re the proofreading type), etc. At worst, they may even require you to <em>sign in</em> to something. That&#39;s a pretty big barrier between you and me, when all I really want to know is <em>Do you think this is a good idea?</em></p>
 
@@ -19,3 +45,18 @@
 <p>Anyway, I&#39;m going to play around with this over the next few days and probably get it to a point where it&#39;s useful to me. Then I&#39;ll worry about making it useful for others (if anyone&#39;s even interested)!</p>
 
 <p><strong>What do you think of this idea? Let me know by voting it up or down!</strong></p>
+
+        </article>
+    </section>
+
+    <section id="comments">
+        <div id="disqus_thread"></div>
+    </section>
+
+    <footer>
+        <span id="path"></span>
+        <a href="/ideas">Back</a>
+    </footer>
+</body>
+
+</html>

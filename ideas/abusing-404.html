@@ -1,5 +1,46 @@
-<h1>Abusing the 404 error page</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/lib/github.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://up-down.herokuapp.com/updown.js"></script>
+    <script src="/javascripts/idea.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <section id="content">
+        <div id="voting">
+            <div class="voting-box">
+                <button id="vote-up"></button>
+                <div id="upvote-count">...</div>
+            </div>
+            <div class="voting-box">
+                <button id="vote-down"></button>
+                <div id="downvote-count">...</div>
+            </div>
+        </div>
+
+        <article id="idea">
+            <h1>Abusing the 404 error page</h1>
 
 <p>GitHub lets you put up a custom 404 page for custom domains. I had this idea that you could use the 404 page as your main layout and then use the path displayed in the browser&#39;s address bar to dynamically fetch content.</p>
 
 <p>That&#39;s what I&#39;m doing here. See how the address bar says &#39;abusing-404&#39;? There&#39;s JavaScript on this page that takes that (from <code>window.location.pathname</code>), fetches <code>abusing-404.md</code> with an <code>XMLHttpRequest</code>, and then uses <strike><a href="https://github.com/evilstreak/markdown-js">markdown-js</a></strike> <a href="https://github.com/chjj/marked">marked</a> to render the response as HTML.</p>
+
+        </article>
+    </section>
+
+    <section id="comments">
+        <div id="disqus_thread"></div>
+    </section>
+
+    <footer>
+        <span id="path"></span>
+        <a href="/ideas">Back</a>
+    </footer>
+</body>
+
+</html>

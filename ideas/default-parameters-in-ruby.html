@@ -1,4 +1,30 @@
-<h1>Default parameters in Ruby</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/lib/github.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://up-down.herokuapp.com/updown.js"></script>
+    <script src="/javascripts/idea.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <section id="content">
+        <div id="voting">
+            <div class="voting-box">
+                <button id="vote-up"></button>
+                <div id="upvote-count">...</div>
+            </div>
+            <div class="voting-box">
+                <button id="vote-down"></button>
+                <div id="downvote-count">...</div>
+            </div>
+        </div>
+
+        <article id="idea">
+            <h1>Default parameters in Ruby</h1>
 
 <p>The idiomatic way of providing default parameter values in Ruby is to use the language&#39;s built-in facility:</p>
 
@@ -84,3 +110,18 @@ foo(nil)
 <p>But now you&#39;ve duplicated your logic for falling back to a sensible default. And what are you going to do, add this special handling at every point where <code>foo</code> is called with a parameter that might be <code>nil</code>? Unsustainable!</p>
 
 <p>So this is the final and best reason why I prefer <em>my</em> way over Ruby&#39;s built-in way. Thoughtful questions, comments, and vitriol all welcome.</p>
+
+        </article>
+    </section>
+
+    <section id="comments">
+        <div id="disqus_thread"></div>
+    </section>
+
+    <footer>
+        <span id="path"></span>
+        <a href="/ideas">Back</a>
+    </footer>
+</body>
+
+</html>
