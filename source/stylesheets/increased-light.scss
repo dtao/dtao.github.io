@@ -27,7 +27,7 @@ h1, a {
 main {
   @include fixed-offset(25%);
 
-  a {
+  & > a {
     display: inline-block;
     color: #888;
     text-decoration: none;
