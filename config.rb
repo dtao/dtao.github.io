@@ -9,6 +9,8 @@ page "/ideas", :layout => false
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true
 
+activate :directory_indexes if environment == :development
+
 set :css_dir, 'stylesheets'
 
 set :js_dir, 'javascripts'
