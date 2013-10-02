@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html>
 
-<script>
-    function getRandom(options) {
-        return options[Math.floor(Math.random() * options.length)];
-    }
+<head>
+    <style type="text/css">
+        p {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            margin-top: -25px;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
 
-    function fetchIntro(intro) {
-        var request = new XMLHttpRequest();
-        request.open('GET', intro);
+    <script type="text/javascript">
+        function getRandom(options) {
+            return options[Math.floor(Math.random() * options.length)];
+        }
 
-        request.addEventListener('load', function() {
-            document.write(request.responseText);
-        });
+        function fetchIntro(intro) {
+            var request = new XMLHttpRequest();
+            request.open('GET', 'intros/' + intro);
 
-        request.send();
-    }
+            request.addEventListener('load', function() {
+                document.open();
+                document.write(request.responseText);
+                document.close();
+            });
 
-    var intros = [
-        'gravatar',
-        'shadow'
-    ];
+            request.send();
+        }
 
-    fetchIntro(getRandom(intros));
-</script>
+        var intros = [
+            'gravatar',
+            'shadow'
+        ];
+
+        fetchIntro(getRandom(intros));
+    </script>
+</head>
+
+<body>
+    <p>Loading...</p>
+</body>
 
 </html>
