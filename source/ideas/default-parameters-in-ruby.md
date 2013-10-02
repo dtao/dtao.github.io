@@ -1,5 +1,7 @@
-Default parameters in Ruby
-==========================
+---
+title: Default parameters in Ruby
+date: 2013-07-08
+---
 
 The idiomatic way of providing default parameter values in Ruby is to use the language's built-in facility:
 

@@ -1,5 +1,7 @@
-Getting rid of null
-===================
+---
+title: Getting rid of null
+date: 2013-07-02
+---
 
 I think there's an anti-pattern in most software that's written in mainstream languages today: the handling of null references. Like, their very existence.
 

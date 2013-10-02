@@ -1,5 +1,7 @@
-Functions over (JavaScript) libraries
-=====================================
+---
+title: Functions over (JavaScript) libraries
+date: 2013-09-19
+---
 
 I should preface this by saying I barely know what I'm talking about. I haven't bothered to learn
 the ins and outs, or even the rationale (in full), of any JavaScript module pattern/library/toolkit

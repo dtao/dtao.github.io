@@ -1,5 +1,7 @@
-A simple voting system
-======================
+---
+title: A simple voting system
+date: 2013-07-10
+---
 
 Sometimes I propose an idea and I'd just like to know whether people generally like or dislike it. This site is a perfect example. I added [Disqus](http://disqus.com/) comments over there on the right (or down below if you're reading this on a phone); but I don't really expect people to use them that much. *Comments* are pretty heavyweight: they require you to think about what you want to say, type it all out, proofread it (if you're the proofreading type), etc. At worst, they may even require you to *sign in* to something. That's a pretty big barrier between you and me, when all I really want to know is *Do you think this is a good idea?*
 

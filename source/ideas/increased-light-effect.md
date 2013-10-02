@@ -1,5 +1,7 @@
-An "increased light" effect in CSS
-==================================
+---
+title: An "increased light" effect in CSS
+date: 2013-10-02
+---
 
 I had this idea for an effect where it looks like an increased amount of light is cast at the user's screen (like, from where the user is sitting). Mainly this would entail perceived shadows receding and possibly the background color getting brighter.
 

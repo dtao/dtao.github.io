@@ -1,13 +1,6 @@
 //= require_directory ./lib
 //= require highlighting
 
-function updateDocumentTitle() {
-  var heading = document.getElementById('idea').querySelector('h1');
-  if (heading) {
-    document.title = 'Dan Tao - ' + heading.textContent;
-  }
-}
-
 function pluralizeCount(count, word) {
   if (count === 1) {
     return count + ' ' + word;
@@ -101,6 +94,5 @@ function initVotingButtons() {
 
 window.addEventListener('load', function() {
   highlightAll();
-  updateDocumentTitle();
   initVotingButtons();
 });

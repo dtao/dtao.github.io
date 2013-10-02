@@ -1,5 +1,7 @@
-Abusing the 404 error page
-==========================
+---
+title: Abusing the 404 error page
+date: 2013-07-08
+---
 
 **Update: This actually isn't accurate anymore as I switched to [Middleman](http://middlemanapp.com/) for developing this site, abandoning the hackiness described below.**
 

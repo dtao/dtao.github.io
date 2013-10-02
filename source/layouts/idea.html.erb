@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Dan Tao</title>
+    <title>Dan Tao - <%= current_resource.data['title'] %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <%= stylesheet_link_tag "ideas" %>
     <%= stylesheet_link_tag "lib/github" %>
@@ -24,6 +24,7 @@
         </div>
 
         <article id="idea">
+            <h1><%= current_resource.data['title'] %></h1>
             <%= yield %>
         </article>
     </section>

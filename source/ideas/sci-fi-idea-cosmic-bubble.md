@@ -1,7 +1,9 @@
-Here's a sci-fi movie idea that I think would be pretty sweet. If any filmmakers are reading this, please create this movie and I'll take a modest 50% of the revenue. (That's how this works, right?)
+---
+title: The Cosmic Bubble
+date: 2013-07-31
+---
 
-The Cosmic Bubble
------------------
+Here's a sci-fi movie idea that I think would be pretty sweet. If any filmmakers are reading this, please create this movie and I'll take a modest 50% of the revenue. (That's how this works, right?)
 
 This one's sort of like [*The Truman Show*](http://www.imdb.com/title/tt0120382/) meets [*The Matrix*](http://www.imdb.com/title/tt0133093) meets [*Contact*](http://www.imdb.com/title/tt0118884).
 

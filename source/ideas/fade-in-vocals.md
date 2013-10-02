@@ -1,5 +1,7 @@
-Fade-in vocals
-==============
+---
+title: Fade-in vocals
+date: 2013-07-02
+---
 
 There is a certain effect in some of the music I listen to that used to intrigue me. It was the sound of the singer's vocals fading *in*, as if they were coming to you through some ethereal dimension. I wondered how it was done.
 
