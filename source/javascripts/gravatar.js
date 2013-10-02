@@ -25,6 +25,4 @@ function loadRandomBackdrop() {
   backdrop.src = 'http://www.gravatar.com/avatar/' + getRandomHash() + '?d=identicon&s=500';
 }
 
-window.addEventListener('load', function() {
-  loadRandomBackdrop();
-});
+loadRandomBackdrop();

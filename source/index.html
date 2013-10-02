@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+    function getRandom(options) {
+        return options[Math.floor(Math.random() * options.length)];
+    }
+
+    function fetchIntro(intro) {
+        var request = new XMLHttpRequest();
+        request.open('GET', intro);
+
+        request.addEventListener('load', function() {
+            document.write(request.responseText);
+        });
+
+        request.send();
+    }
+
+    var intros = [
+        'gravatar',
+        'shadow'
+    ];
+
+    fetchIntro(getRandom(intros));
+</script>
+
+</html>
