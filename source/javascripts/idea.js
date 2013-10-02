@@ -8,10 +8,6 @@ function updateDocumentTitle() {
   }
 }
 
-function displayPathInFooter() {
-  document.getElementById('path').textContent = window.location.pathname;
-}
-
 function pluralizeCount(count, word) {
   if (count === 1) {
     return count + ' ' + word;
@@ -106,6 +102,5 @@ function initVotingButtons() {
 window.addEventListener('load', function() {
   highlightAll();
   updateDocumentTitle();
-  displayPathInFooter();
   initVotingButtons();
 });
