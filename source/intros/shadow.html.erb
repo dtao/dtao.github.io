@@ -5,7 +5,7 @@
     <title>Dan Tao</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <%= stylesheet_link_tag "shadow" %>
-    <%= javascript_include_tag "lib/ga.js" %>
+    <%= javascript_include_tag "lib/ga.js" unless environment == :development %>
     <%= javascript_include_tag "shadow" %>
 </head>
 
@@ -13,16 +13,15 @@
     <main>
         <h1>Dan Tao</h1>
 
-        <nav>
-            <a href="http://philosopherdeveloper.com">Blog</a><br />
-            <a href="https://github.com/dtao">Code</a><br />
-            <a href="https://soundcloud.com/dantao">Music</a><br />
-            <a href="/ideas">Ideas</a>
+        <a href="http://philosopherdeveloper.com">Blog</a><br />
+        <a href="https://github.com/dtao">Code</a><br />
+        <a href="https://soundcloud.com/dantao">Music</a><br />
+        <a href="/ideas">Ideas</a>
 
-            <div id="shadow"></div>
-        </nav>
+        <div id="shadow"></div>
 
         <footer>
+            <a href="/ideas/increased-light-effect">About this intro</a>
             <a href="https://github.com/dtao/dtao.github.io">Source</a>
         </footer>
     </main>
