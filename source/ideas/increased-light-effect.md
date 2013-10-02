@@ -5,7 +5,7 @@ date: 2013-10-02
 
 I had this idea for an effect where it looks like an increased amount of light is cast at the user's screen (like, from where the user is sitting). Mainly this would entail perceived shadows receding and possibly the background color getting brighter.
 
-As it turns out, this was possible to do *almost* without JavaScript. You can see the effect in [this intro to danieltao.com](/intros/shadow): when you hover over one of the links, the whole screen sort of glows brighter.
+As it turns out, this was possible to do *almost* without JavaScript. You can see the effect in [this intro to danieltao.com](/intros/increased-light): when you hover over one of the links, the whole screen sort of glows brighter.
 
 Here's how I got it to work. The difference in light is accomplished via the CSS properties `background-color` (duh) and `box-shadow`. I position a wrapper element with fixed positioning so that its borders are actually larger than the screen's:
 
