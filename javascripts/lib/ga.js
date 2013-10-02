@@ -1,7 +1,1 @@
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-42171040-1', 'danieltao.com');
-ga('send', 'pageview');
+!function(e,t,a,n,o,d,r){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,d=t.createElement(a),r=t.getElementsByTagName(a)[0],d.async=1,d.src=n,r.parentNode.insertBefore(d,r)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-42171040-1","danieltao.com"),ga("send","pageview");

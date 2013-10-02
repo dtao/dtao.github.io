@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Dan Tao</title>
+    <title>Dan Tao - Getting rid of null</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/lib/github.css" media="screen" rel="stylesheet" type="text/css" />
@@ -25,8 +25,7 @@
 
         <article id="idea">
             <h1>Getting rid of null</h1>
-
-<p>I think there&#39;s an anti-pattern in most software that&#39;s written in mainstream languages today: the handling of null references. Like, their very existence.</p>
+            <p>I think there&#39;s an anti-pattern in most software that&#39;s written in mainstream languages today: the handling of null references. Like, their very existence.</p>
 
 <p>Well, maybe not their <em>existence</em>. Certainly their prevalence. Here&#39;s the thing: <strong>null</strong>, as a concept, is really only suitable for a specific niche case at best: when you write code that you want to handle <em>either</em> a specific type of data, <code>T</code>, <em>or</em>... nothing. We do this all the time, and it seems perfectly natural because it&#39;s so common. But it shouldn&#39;t be.</p>
 
@@ -130,8 +129,8 @@ string? text = GetMaybeNullText();
     </section>
 
     <footer>
-        <span id="path"></span>
-        <a href="/ideas">Back</a>
+        <span id="path">ideas/getting-rid-of-null.html</span>
+        <a href="/ideas">Back to ideas</a>
     </footer>
 </body>
 
