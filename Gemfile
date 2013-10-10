@@ -7,6 +7,9 @@ gem "middleman", "~>3.1.5"
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.1.0"
 
+# Syntax highlighting
+gem "middleman-syntax"
+
 # For faster file watcher updates on Windows:
 gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 
@@ -15,7 +18,7 @@ platforms :mri_18 do
   gem "ruby18_source_location"
 end
 
-# Use Kramdown for fenced code blocks
+# Use Redcarpet for fenced code blocks
 gem "redcarpet"
 
 # Not too pleased with this, but for now I'm using LESS

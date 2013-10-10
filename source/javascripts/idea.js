@@ -1,5 +1,4 @@
 //= require_directory ./lib
-//= require highlighting
 
 function pluralizeCount(count, word) {
   if (count === 1) {
@@ -93,6 +92,5 @@ function initVotingButtons() {
 }
 
 window.addEventListener('load', function() {
-  highlightAll();
   initVotingButtons();
 });
