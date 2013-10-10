@@ -27,6 +27,6 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
 configure :build do
-  activate :minify_css
-  activate :minify_javascript
+  activate :minify_css unless environment == :development
+  activate :minify_javascript unless environment == :development
 end
