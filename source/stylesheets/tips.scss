@@ -1,0 +1,33 @@
+@import url("//fonts.googleapis.com/css?family=Open+Sans:300,400");
+
+@import "common.scss";
+
+body {
+  @include colorize-children(section, $darken: 25%);
+  @include colorize-grandchildren(section, h2, color, 30%);
+
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 150%;
+}
+
+section {
+  display: inline-block;
+  margin-right: 1em;
+  margin-bottom: 1ex;
+  padding: 1ex 2em;
+  border-radius: 1ex;
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+
+      &:hover {
+        color: #ff8;
+      }
+    }
+  }
+}

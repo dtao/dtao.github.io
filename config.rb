@@ -1,3 +1,11 @@
+with_layout :javascript_tip do
+  page "/tips/javascript/*"
+end
+
+with_layout :css_tip do
+  page "/tips/css/*"
+end
+
 with_layout :idea do
   page "/ideas/*"
 end

@@ -1,0 +1,77 @@
+$green:  #41bb19;
+$blue:   #0f82f5;
+$violet: #9b59bb;
+$orange: #fe6600;
+$red:    #e60033;
+
+$color1: $green;
+$color2: $blue;
+$color3: $violet;
+$color4: $orange;
+$color5: $red;
+
+@mixin translucent($opacity) {
+  opacity: $opacity;
+  filter: alpha(opacity=($opacity * 100));
+}
+
+@mixin transition($property, $interval) {
+  transition: $property $interval;
+  -moz-transition: $property $interval;
+  -o-transition: $property $interval;
+  -webkit-transition: $property $interval;
+}
+
+@mixin colorize-children($child, $property: background-color, $darken: 0%) {
+  #{$child}:nth-child(5n+1) {
+    #{$property}: darken($color1, $darken);
+  }
+
+  #{$child}:nth-child(5n+2) {
+    #{$property}: darken($color2, $darken);
+  }
+
+  #{$child}:nth-child(5n+3) {
+    #{$property}: darken($color3, $darken);
+  }
+
+  #{$child}:nth-child(5n+4) {
+    #{$property}: darken($color4, $darken);
+  }
+
+  #{$child}:nth-child(5n+5) {
+    #{$property}: darken($color5, $darken);
+  }
+}
+
+@mixin colorize-grandchildren($child, $grandchild, $property: background-color, $lighten: 0%) {
+  #{$child}:nth-child(5n+1) {
+    #{$grandchild} {
+      #{$property}: lighten($color1, $lighten);
+    }
+  }
+
+  #{$child}:nth-child(5n+2) {
+    #{$grandchild} {
+      #{$property}: lighten($color2, $lighten);
+    }
+  }
+
+  #{$child}:nth-child(5n+3) {
+    #{$grandchild} {
+      #{$property}: lighten($color3, $lighten);
+    }
+  }
+
+  #{$child}:nth-child(5n+4) {
+    #{$grandchild} {
+      #{$property}: lighten($color4, $lighten);
+    }
+  }
+
+  #{$child}:nth-child(5n+5) {
+    #{$grandchild} {
+      #{$property}: lighten($color5, $lighten);
+    }
+  }
+}
