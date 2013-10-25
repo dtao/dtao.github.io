@@ -5,7 +5,6 @@
     <title>Dan Tao - A simple voting system</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/stylesheets/lib/github.css" media="screen" rel="stylesheet" type="text/css" />
     <script src="/javascripts/idea.js" type="text/javascript"></script>
 </head>
 
@@ -24,23 +23,23 @@
 
         <article id="idea">
             <h1>A simple voting system</h1>
-            <p>Sometimes I propose an idea and I&#39;d just like to know whether people generally like or dislike it. This site is a perfect example. I added <a href="http://disqus.com/">Disqus</a> comments over there on the right (or down below if you&#39;re reading this on a phone); but I don&#39;t really expect people to use them that much. <em>Comments</em> are pretty heavyweight: they require you to think about what you want to say, type it all out, proofread it (if you&#39;re the proofreading type), etc. At worst, they may even require you to <em>sign in</em> to something. That&#39;s a pretty big barrier between you and me, when all I really want to know is <em>Do you think this is a good idea?</em></p>
+            <p>Sometimes I propose an idea and I&rsquo;d just like to know whether people generally like or dislike it. This site is a perfect example. I added <a href="http://disqus.com/">Disqus</a> comments over there on the right (or down below if you&rsquo;re reading this on a phone); but I don&rsquo;t really expect people to use them that much. <em>Comments</em> are pretty heavyweight: they require you to think about what you want to say, type it all out, proofread it (if you&rsquo;re the proofreading type), etc. At worst, they may even require you to <em>sign in</em> to something. That&rsquo;s a pretty big barrier between you and me, when all I really want to know is <em>Do you think this is a good idea?</em></p>
 
-<p>For a while now I&#39;ve wanted to see something a lot simpler: just an up/down voting system. Yes or no. And I wanted to see this as a <em>service</em>, so that I don&#39;t have to implement it and incorporate it into every site I ever develop. (Also: so I can include up/down functionality on a <em>static</em> site, like this one!)</p>
+<p>For a while now I&rsquo;ve wanted to see something a lot simpler: just an up/down voting system. Yes or no. And I wanted to see this as a <em>service</em>, so that I don&rsquo;t have to implement it and incorporate it into every site I ever develop. (Also: so I can include up/down functionality on a <em>static</em> site, like this one!)</p>
 
-<p>And one more thing: I didn&#39;t want to use Facebook, or LinkedIn, or any of those buttons, because:</p>
+<p>And one more thing: I didn&rsquo;t want to use Facebook, or LinkedIn, or any of those buttons, because:</p>
 
 <ol>
-<li>They&#39;re linked to individuals&#39; accounts</li>
-<li>They couple the ideas of <em>liking</em> with <em>sharing</em>, and I don&#39;t necessarily want to put &quot;Share this with your Facebook friends!&quot; here</li>
+<li>They&rsquo;re linked to individuals&#39; accounts</li>
+<li>They couple the ideas of <em>liking</em> with <em>sharing</em>, and I don&rsquo;t necessarily want to put &ldquo;Share this with your Facebook friends!&rdquo; here</li>
 <li>Some people have a negative reaction to those brands</li>
 </ol>
 
-<p>So I made one, called <a href="http://up-down.herokuapp.com">Up/Down</a>. It&#39;s <strong>really</strong> simple. There are two parts: the server (a Ruby app hosted on Heroku) and a tiny little JavaScript library. The JavaScript library lets you call to the server (using <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a>) to see how many up/down votes your site has, and it lets you vote the current site up or down.</p>
+<p>So I made one, called <a href="http://up-down.herokuapp.com">Up/Down</a>. It&rsquo;s <strong>really</strong> simple. There are two parts: the server (a Ruby app hosted on Heroku) and a tiny little JavaScript library. The JavaScript library lets you call to the server (using <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a>) to see how many up/down votes your site has, and it lets you vote the current site up or down.</p>
 
-<p>Obviously if you want a fool-proof system for this, you&#39;d need to authenticate somehow. I figured: screw that. It would be nice, but it contributes to that big barrier I already mentioned. The current implementation just uses cookies. This prevents accidental duplicates but it doesn&#39;t prevent &quot;malicious&quot; duplicates (i.e., the user can always clear his or her cookies and vote again). I put the word &quot;malicious&quot; in quotes because... come on, this is a simple voting system. Who really cares?</p>
+<p>Obviously if you want a fool-proof system for this, you&rsquo;d need to authenticate somehow. I figured: screw that. It would be nice, but it contributes to that big barrier I already mentioned. The current implementation just uses cookies. This prevents accidental duplicates but it doesn&rsquo;t prevent &ldquo;malicious&rdquo; duplicates (i.e., the user can always clear his or her cookies and vote again). I put the word &ldquo;malicious&rdquo; in quotes because&hellip; come on, this is a simple voting system. Who really cares?</p>
 
-<p>Anyway, I&#39;m going to play around with this over the next few days and probably get it to a point where it&#39;s useful to me. Then I&#39;ll worry about making it useful for others (if anyone&#39;s even interested)!</p>
+<p>Anyway, I&rsquo;m going to play around with this over the next few days and probably get it to a point where it&rsquo;s useful to me. Then I&rsquo;ll worry about making it useful for others (if anyone&rsquo;s even interested)!</p>
 
 <p><strong>What do you think of this idea? Let me know by voting it up or down!</strong></p>
 

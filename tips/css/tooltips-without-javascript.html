@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao - Tooltips without JavaScript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="/stylesheets/tip.css" media="screen" rel="stylesheet" type="text/css" />
+    
+        <link href="/stylesheets/tips/css/tooltips-without-javascript.css" media="screen" rel="stylesheet" type="text/css" />
+    
+</head>
+
+<body>
+    <article>
+        <header>
+            <h1>Tooltips without JavaScript</h1>
+        </header>
+
+            
+
+    <p>Here is <span class="has-tooltip">some text with a tooltip</span><span class="tooltip">I am a <strong>tooltip</strong>! Pretty <em>sweet</em>, huh?</span>. Hover over the text to see a tooltip appear. This effect is accomplished without any JavaScript.</p>
+
+<p>How did we do this?</p>
+
+<p>It&rsquo;s actually pretty simple. This technique uses the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_selectors">adjacent sibling selector</a>:</p>
+<pre class="highlight css"><span class="nt">span</span><span class="nc">.tooltip</span> <span class="p">{</span>
+  <span class="c">/* Position the tooltip just below the bottom of the screen */</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">-50px</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+
+  <span class="c">/* Naturally, we want a nice little transition effect */</span>
+  <span class="nl">transition</span><span class="p">:</span> <span class="nb">bottom</span> <span class="m">0.5s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">span</span><span class="nc">.has-tooltip</span><span class="nd">:hover</span> <span class="o">+</span> <span class="nt">span</span><span class="nc">.tooltip</span> <span class="p">{</span>
+  <span class="c">/* When the cursor hovers over the element *immediately before*
+   * the tooltip, slide it up just into view */</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>Of course, this only really works with <code>fixed</code> (or <code>absolute</code>) positioning; but the tooltip doesn&rsquo;t need to go on the bottom of the screen. It could easily go <span class="has-tooltip-right">on the right</span><span class="tooltip-right"><strong>See</strong>? I <em>told</em> you I could go on the right!</span>, for example.</p>
+
+
+    </article>
+
+    <footer>
+        <a href="/tips">Back to tips</a>
+    </footer>
+</body>
+
+</html>

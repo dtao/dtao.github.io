@@ -5,7 +5,6 @@
     <title>Dan Tao - Getting rid of null</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/stylesheets/lib/github.css" media="screen" rel="stylesheet" type="text/css" />
     <script src="/javascripts/idea.js" type="text/javascript"></script>
 </head>
 
@@ -24,28 +23,28 @@
 
         <article id="idea">
             <h1>Getting rid of null</h1>
-            <p>I think there&#39;s an anti-pattern in most software that&#39;s written in mainstream languages today: the handling of null references. Like, their very existence.</p>
+            <p>I think there&rsquo;s an anti-pattern in most software that&rsquo;s written in mainstream languages today: the handling of null references. Like, their very existence.</p>
 
-<p>Well, maybe not their <em>existence</em>. Certainly their prevalence. Here&#39;s the thing: <strong>null</strong>, as a concept, is really only suitable for a specific niche case at best: when you write code that you want to handle <em>either</em> a specific type of data, <code>T</code>, <em>or</em>... nothing. We do this all the time, and it seems perfectly natural because it&#39;s so common. But it shouldn&#39;t be.</p>
+<p>Well, maybe not their <em>existence</em>. Certainly their prevalence. Here&rsquo;s the thing: <strong>null</strong>, as a concept, is really only suitable for a specific niche case at best: when you write code that you want to handle <em>either</em> a specific type of data, <code>T</code>, <em>or</em>&hellip; nothing. We do this all the time, and it seems perfectly natural because it&rsquo;s so common. But it shouldn&rsquo;t be.</p>
 
-<p>Think of statically typed languages for a moment. What would you say is the greatest benefit of using a statically typed language? Your code can be analyzed and verified for correctness because the type of every variable is explicitly declared. Right? (At least that&#39;s what <em>I&#39;d</em> say is one of the greatest benefits.)</p>
+<p>Think of statically typed languages for a moment. What would you say is the greatest benefit of using a statically typed language? Your code can be analyzed and verified for correctness because the type of every variable is explicitly declared. Right? (At least that&rsquo;s what <em>I&rsquo;d</em> say is one of the greatest benefits.)</p>
 
 <p>So when I declare a variable <code>x</code> of type <code>T</code>, I expect that I can initialize it by calling some function <code>f</code> that returns a <code>T</code>. And then I should be able to call any methods on <code>x</code> that are defined in the <code>T</code> class. And if one of those methods, <code>g</code>, returns a <code>U</code>, then I can use its return value with any code that requires the <code>U</code> class. And so on.</p>
 
-<p>Introducing <code>null</code> undermines the stability of all of this. The <code>f</code> function might return <code>null</code> instead of an instance of <code>T</code>. The <code>g</code> function might return <code>null</code> instead of a <code>U</code>. At every such &quot;maybe&quot; point, I have to either:</p>
+<p>Introducing <code>null</code> undermines the stability of all of this. The <code>f</code> function might return <code>null</code> instead of an instance of <code>T</code>. The <code>g</code> function might return <code>null</code> instead of a <code>U</code>. At every such &ldquo;maybe&rdquo; point, I have to either:</p>
 
 <ul>
 <li>Perform an explicit check (defensive programming, which is the preferred strategy with statically typed languages)</li>
 <li>Just ignore the problem (which I think happens quite a bit with dynamically typed languages)</li>
 </ul>
 
-<p>The first approach is very costly, as it wastes development time with lots of boilerplate and clutters up the code with logic that has no business value. The second approach is obviously also risky, though I actually think it&#39;s sometimes the right way to go with the tools we currently have. Either way, the presence of <code>null</code> (or <code>nil</code>) increases the complexity of the code (i.e, <a href="http://philosopherdeveloper.com/posts/optimize-for-comprehensibility.html">reduces comprehensibility</a>) in a self-propagating manner that can spiral completely out of control.</p>
+<p>The first approach is very costly, as it wastes development time with lots of boilerplate and clutters up the code with logic that has no business value. The second approach is obviously also risky, though I actually think it&rsquo;s sometimes the right way to go with the tools we currently have. Either way, the presence of <code>null</code> (or <code>nil</code>) increases the complexity of the code (i.e, <a href="http://philosopherdeveloper.com/posts/optimize-for-comprehensibility.html">reduces comprehensibility</a>) in a self-propagating manner that can spiral completely out of control.</p>
 
-<p>If you don&#39;t agree with me, listen to what <a href="http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">Tony Hoare has to say on the matter</a>:</p>
+<p>If you don&rsquo;t agree with me, listen to what <a href="http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">Tony Hoare has to say on the matter</a>:</p>
 
 <blockquote>
 <p>My goal was to ensure that all use of references should be absolutely safe, with checking
-performed automatically by the compiler. But I couldn&#39;t resist the temptation to put in a null
+performed automatically by the compiler. But I couldn&rsquo;t resist the temptation to put in a null
 reference, simply because it was so easy to implement. This has led to innumerable errors,
 vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and
 damage in the last forty years.</p>
@@ -53,71 +52,61 @@ damage in the last forty years.</p>
 
 <h2>How absurd would it be if primitives were like this?</h2>
 
-<p>You might already have an intuitive sense of what I&#39;m talking about. But let&#39;s look at a quick example anyway, just to drive the point home. Does this look familiar to you?</p>
+<p>You might already have an intuitive sense of what I&rsquo;m talking about. But let&rsquo;s look at a quick example anyway, just to drive the point home. Does this look familiar to you?</p>
+<pre class="highlight csharp"><span class="kt">char</span> <span class="nf">GetMiddleChar</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span><span class="s">&quot;str&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
 
-<pre><code class="csharp">char GetMiddleChar(string str)
-{
-    if (str == null)
-    {
-        throw new ArgumentNullException(&quot;str&quot;);
-    }
-
-    return str[str.Length / 2];
-}
-</code></pre>
-
+    <span class="k">return</span> <span class="n">str</span><span class="p">[</span><span class="n">str</span><span class="p">.</span><span class="n">Length</span> <span class="p">/</span> <span class="m">2</span><span class="p">];</span>
+<span class="p">}</span>
+</pre>
 <p>Yeah, I thought so. This is the <a href="http://en.wikipedia.org/wiki/Defensive_programming">defensive programming</a> I mentioned a moment ago. Most of us read code like this and nod our heads; it seems reasonable. Scratch that; it actually seems <em>right</em>.</p>
 
-<p>But what if we had to do this with primitives? For example, what if every <code>int</code> value in some programming language were either a 32-bit integer or... I don&#39;t know, let&#39;s say <code>false</code>. Then we might see methods like this:</p>
+<p>But what if we had to do this with primitives? For example, what if every <code>int</code> value in some programming language were either a 32-bit integer or&hellip; I don&rsquo;t know, let&rsquo;s say <code>false</code>. Then we might see methods like this:</p>
+<pre class="highlight csharp"><span class="kt">int</span> <span class="nf">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="p">+</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p><strong>What?!</strong> Height of absurdity. And that&rsquo;s the reaction you <em>should</em> have, because the above code is really incredibly weird: an implementation of an operation that <em>only makes sense for numbers</em>, forced to account for this bizarre scenario that has basically been injected out of nowhere by a language quirk, that a variable explicitly typed as an <code>int</code> could also maybe have a boolean value.</p>
 
-<pre><code class="csharp">int Add(int x, int y)
-{
-  if (x == false)
-  {
-    if (y == false)
-    {
-      return false;
-    }
-    return y;
-  }
-  return x + y;
-}
-</code></pre>
-
-<p><strong>What?!</strong> Height of absurdity. And that&#39;s the reaction you <em>should</em> have, because the above code is really incredibly weird: an implementation of an operation that <em>only makes sense for numbers</em>, forced to account for this bizarre scenario that has basically been injected out of nowhere by a language quirk, that a variable explicitly typed as an <code>int</code> could also maybe have a boolean value.</p>
-
-<p>This is insane, and yet it&#39;s basically how we deal with <code>null</code> all the time.</p>
+<p>This is insane, and yet it&rsquo;s basically how we deal with <code>null</code> all the time.</p>
 
 <h2>The known solution, and a better solution</h2>
 
 <p>I am aware of languages where this problem is addressed by the introduction of non-null references. The <a href="http://en.wikipedia.org/wiki/Spec_Sharp">Spec# language</a>, for example, allows you to do this:</p>
-
-<pre><code class="csharp">// text cannot be assigned a null reference
-string! text = GetNonNullText();
-</code></pre>
-
-<p>That&#39;s OK; but it still isn&#39;t ideal, in my opinion. As I said, null is really a niche concept. It should not be the default behavior, which you can change by appending a <code>!</code>. <strong>The default behavior should be no null references.</strong></p>
+<pre class="highlight csharp"><span class="c1">// text cannot be assigned a null reference
+</span><span class="kt">string</span><span class="p">!</span> <span class="n">text</span> <span class="p">=</span> <span class="nf">GetNonNullText</span><span class="p">();</span>
+</pre>
+<p>That&rsquo;s OK; but it still isn&rsquo;t ideal, in my opinion. As I said, null is really a niche concept. It should not be the default behavior, which you can change by appending a <code>!</code>. <strong>The default behavior should be no null references.</strong></p>
 
 <p>Like this:</p>
+<pre class="highlight csharp"><span class="c1">// no null reference
+</span><span class="kt">string</span> <span class="n">text</span> <span class="p">=</span> <span class="nf">GetNonNullText</span><span class="p">();</span>
 
-<pre><code class="csharp">// no null reference
-string text = GetNonNullText();
-
-// maybe null reference
-string? text = GetMaybeNullText();
-</code></pre>
-
-<p>Isn&#39;t that simpler? It&#39;s also perfect for developers who are familiar with C#, because C# already uses the <code>?</code> syntax for the <code>Nullable&lt;T&gt;</code> value type (which ordinarily don&#39;t allow null values). This would allow you to operate in a null-free world for the most part, while still retaining the possibility of null references in those <em>very few scenarios where they actually make any sense</em> (e.g., to denote the head and tail of a linked list, maybe).</p>
+<span class="c1">// maybe null reference
+</span><span class="kt">string</span><span class="p">?</span> <span class="n">text</span> <span class="p">=</span> <span class="nf">GetMaybeNullText</span><span class="p">();</span>
+</pre>
+<p>Isn&rsquo;t that simpler? It&rsquo;s also perfect for developers who are familiar with C#, because C# already uses the <code>?</code> syntax for the <code>Nullable&lt;T&gt;</code> value type (which ordinarily don&rsquo;t allow null values). This would allow you to operate in a null-free world for the most part, while still retaining the possibility of null references in those <em>very few scenarios where they actually make any sense</em> (e.g., to denote the head and tail of a linked list, maybe).</p>
 
 <p>Now, our <code>GetMiddleChar</code> method from earlier becomes:</p>
-
-<pre><code class="csharp">char GetMiddleChar(string str)
-{
-  // str can&#39;t be null, so we can dive straight into the actual logic!
-  return str[str.Length / 2];
-}
-</code></pre>
-
+<pre class="highlight csharp"><span class="kt">char</span> <span class="nf">GetMiddleChar</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// str can&#39;t be null, so we can dive straight into the actual logic!
+</span>  <span class="k">return</span> <span class="n">str</span><span class="p">[</span><span class="n">str</span><span class="p">.</span><span class="n">Length</span> <span class="p">/</span> <span class="m">2</span><span class="p">];</span>
+<span class="p">}</span>
+</pre>
 <p>This is all totally theoretical, of course. I am basically just shouting this opinion out into the aether. But if I ever were to write my own programming language, I am almost certain this would be one of its characteristics.</p>
 
         </article>

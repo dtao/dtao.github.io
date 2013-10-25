@@ -5,7 +5,6 @@
     <title>Dan Tao - Default parameters in Ruby</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/stylesheets/lib/github.css" media="screen" rel="stylesheet" type="text/css" />
     <script src="/javascripts/idea.js" type="text/javascript"></script>
 </head>
 
@@ -24,22 +23,18 @@
 
         <article id="idea">
             <h1>Default parameters in Ruby</h1>
-            <p>The idiomatic way of providing default parameter values in Ruby is to use the language&#39;s built-in facility:</p>
-
-<pre><code class="ruby">def foo(options=DEFAULT_OPTIONS)
-  do_something(options[:bar])
-end
-</code></pre>
-
+            <p>The idiomatic way of providing default parameter values in Ruby is to use the language&rsquo;s built-in facility:</p>
+<pre class="highlight ruby"><span class="k">def </span><span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="no">DEFAULT_OPTIONS</span><span class="p">)</span>
+  <span class="n">do_something</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:bar</span><span class="o">]</span><span class="p">)</span>
+<span class="k">end</span>
+</pre>
 <p>I actually prefer doing things slightly differently, though it might make some Ruby programmers unhappy:</p>
-
-<pre><code class="ruby">def foo(options=nil)
-  options ||= DEFAULT_OPTIONS.dup
-  do_something(options[:bar])
-end
-</code></pre>
-
-<p>There are two reasons for this. Well, three: one good and two sort of silly. I&#39;ll start with the silly ones.</p>
+<pre class="highlight ruby"><span class="k">def </span><span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+  <span class="n">options</span> <span class="o">||=</span> <span class="no">DEFAULT_OPTIONS</span><span class="nf">.dup</span>
+  <span class="n">do_something</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:bar</span><span class="o">]</span><span class="p">)</span>
+<span class="k">end</span>
+</pre>
+<p>There are two reasons for this. Well, three: one good and two sort of silly. I&rsquo;ll start with the silly ones.</p>
 
 <h2>Reason 1: I want to be different</h2>
 
@@ -48,66 +43,56 @@ end
 <h2>Reason 2: The idiomatic way is open to side effects</h2>
 
 <p>The idiomatic way, where you have <code>options=DEFAULT_OPTIONS</code>, causes a default object to be passed in to the method, which can cause unexpected behavior if you get mutate-happy with your Ruby:</p>
+<pre class="highlight ruby"><span class="k">def </span><span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="no">DEFAULT_OPTIONS</span><span class="p">)</span>
+  <span class="c1"># In the default case, you&#39;re changing DEFAULT_OPTIONS here!</span>
+  <span class="n">options</span><span class="nf">.merge!</span><span class="p">(</span><span class="n">some_other_options</span><span class="p">())</span>
+  <span class="n">do_something</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+<span class="k">end</span>
+</pre>
+<p>Now, before you jump on me for this one, yes, I <em>do</em> realize that this is arguably a ridiculous objection, for one simple reason: there&rsquo;s really no difference between the &ldquo;idiomatic&rdquo; way and the &ldquo;Dan&rdquo; way here. In Ruby, you can easily set <code>options=DEFAULT_OPTIONS.dup</code> as your default parameter and avoid this problem. Likewise, using my preferred approach, you could easily forget to include the <code>.dup</code> and have the exact same problem.</p>
 
-<pre><code class="ruby">def foo(options=DEFAULT_OPTIONS)
-  # In the default case, you&#39;re changing DEFAULT_OPTIONS here!
-  options.merge!(some_other_options())
-  do_something(options)
-end
-</code></pre>
+<p>My reason for preferring the use of <code>||=</code> here still stands, despite this very valid objection. I rarely see <code>.dup</code> called on a default parameter in Ruby in practice, and so I suspect most devs wouldn&rsquo;t even think about that part.</p>
 
-<p>Now, before you jump on me for this one, yes, I <em>do</em> realize that this is arguably a ridiculous objection, for one simple reason: there&#39;s really no difference between the &quot;idiomatic&quot; way and the &quot;Dan&quot; way here. In Ruby, you can easily set <code>options=DEFAULT_OPTIONS.dup</code> as your default parameter and avoid this problem. Likewise, using my preferred approach, you could easily forget to include the <code>.dup</code> and have the exact same problem.</p>
+<p>It&rsquo;s also counterintuitive to me that this isn&rsquo;t just a one-time setting of a default value; the default value is treated as an <em>expression</em> which will be evaluated whenever the method is called. To understand what I mean, consider this simple program:</p>
+<pre class="highlight ruby"><span class="vi">@counter</span> <span class="o">=</span> <span class="mi">0</span>
 
-<p>My reason for preferring the use of <code>||=</code> here still stands, despite this very valid objection. I rarely see <code>.dup</code> called on a default parameter in Ruby in practice, and so I suspect most devs wouldn&#39;t even think about that part.</p>
+<span class="k">def </span><span class="nf">get_id</span>
+  <span class="vi">@counter</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">end</span>
 
-<p>It&#39;s also counterintuitive to me that this isn&#39;t just a one-time setting of a default value; the default value is treated as an <em>expression</em> which will be evaluated whenever the method is called. To understand what I mean, consider this simple program:</p>
+<span class="c1"># My intuition would tell me this sets the default value of id to 1,</span>
+<span class="c1"># for all subsequence calls; but in fact it calls get_id whenever</span>
+<span class="c1"># print_id is called without a parameter.</span>
+<span class="k">def </span><span class="nf">print_id</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="nb">id</span>
+<span class="k">end</span>
 
-<pre><code class="ruby">@counter = 0
-
-def get_id
-  @counter += 1
-end
-
-# My intuition would tell me this sets the default value of id to 1,
-# for all subsequence calls; but in fact it calls get_id whenever
-# print_id is called without a parameter.
-def print_id(id=get_id)
-  puts id
-end
-
-print_id() # =&gt; 1
-print_id() # =&gt; 2
-</code></pre>
-
-<p>Whether that meshes with your intuition or not, I suspect at least <em>some</em> devs share my feeling here. Obviously, once you know how it works, you get it. So as I&#39;ve already conceded, maybe this isn&#39;t a good reason. That&#39;s why I saved the best for last!</p>
+<span class="n">print_id</span><span class="p">()</span> <span class="c1"># =&gt; 1</span>
+<span class="n">print_id</span><span class="p">()</span> <span class="c1"># =&gt; 2</span>
+</pre>
+<p>Whether that meshes with your intuition or not, I suspect at least <em>some</em> devs share my feeling here. Obviously, once you know how it works, you get it. So as I&rsquo;ve already conceded, maybe this isn&rsquo;t a good reason. That&rsquo;s why I saved the best for last!</p>
 
 <h2>Reason 3: The idiomatic way often leads to nil errors</h2>
 
-<p>Here&#39;s the main one. I like my approach using <code>||=</code> because it lets you pass in <code>nil</code> to the method and treats this the same as if you hadn&#39;t passed in the parameter at all. (I just realized: maybe I like this because it reminds me of JavaScript with <code>undefined</code>!)</p>
+<p>Here&rsquo;s the main one. I like my approach using <code>||=</code> because it lets you pass in <code>nil</code> to the method and treats this the same as if you hadn&rsquo;t passed in the parameter at all. (I just realized: maybe I like this because it reminds me of JavaScript with <code>undefined</code>!)</p>
 
-<p>Surely some of you are shaking your heads, thinking that&#39;s awful because you&#39;d like your methods to be able accept <code>nil</code> and do something meaningful with that. At the risk of sounding like I&#39;m making an absurd blanket statement, let me just say: I&#39;m <em>skeptical</em>. When do you write a method with intentionally different behavior for passing in <code>nil</code> as opposed to not passing anything? Maybe I&#39;m just not thinking hard enough, but no reasonable cases for this come to my mind.</p>
+<p>Surely some of you are shaking your heads, thinking that&rsquo;s awful because you&rsquo;d like your methods to be able accept <code>nil</code> and do something meaningful with that. At the risk of sounding like I&rsquo;m making an absurd blanket statement, let me just say: I&rsquo;m <em>skeptical</em>. When do you write a method with intentionally different behavior for passing in <code>nil</code> as opposed to not passing anything? Maybe I&rsquo;m just not thinking hard enough, but no reasonable cases for this come to my mind.</p>
 
-<p>Now, I don&#39;t mean to suggest that given my definition of <code>foo</code> above, it would make sense to pass in <code>nil</code> explicitly:</p>
-
-<pre><code class="ruby"># Why would I do this?
-foo(nil)
-</code></pre>
-
-<p>Rather, I find that these <code>nil</code> errors creep up in scenarios where you&#39;re passing the output of one method directly into another:</p>
-
-<pre><code class="ruby">foo(get_some_data())
-</code></pre>
-
+<p>Now, I don&rsquo;t mean to suggest that given my definition of <code>foo</code> above, it would make sense to pass in <code>nil</code> explicitly:</p>
+<pre class="highlight ruby"><span class="c1"># Why would I do this?</span>
+<span class="n">foo</span><span class="p">(</span><span class="kp">nil</span><span class="p">)</span>
+</pre>
+<p>Rather, I find that these <code>nil</code> errors creep up in scenarios where you&rsquo;re passing the output of one method directly into another:</p>
+<pre class="highlight ruby"><span class="n">foo</span><span class="p">(</span><span class="n">get_some_data</span><span class="p">())</span>
+</pre>
 <p>In the above case, it might (arguably) sometimes make sense for <code>get_some_data</code> to return <code>nil</code>&mdash;or anyway, whether or not it makes <em>sense</em> it might <em>happen</em>&mdash;and in that case <code>options</code> will be <code>nil</code> rather than a default value.</p>
 
 <p>One way to solve this is to use <code>||</code> at the call site:</p>
+<pre class="highlight ruby"><span class="n">foo</span><span class="p">(</span><span class="n">get_some_data</span><span class="p">()</span> <span class="o">||</span> <span class="no">DEFAULT_OPTIONS</span><span class="p">)</span>
+</pre>
+<p>But now you&rsquo;ve duplicated your logic for falling back to a sensible default. And what are you going to do, add this special handling at every point where <code>foo</code> is called with a parameter that might be <code>nil</code>? Unsustainable!</p>
 
-<pre><code class="ruby">foo(get_some_data() || DEFAULT_OPTIONS)
-</code></pre>
-
-<p>But now you&#39;ve duplicated your logic for falling back to a sensible default. And what are you going to do, add this special handling at every point where <code>foo</code> is called with a parameter that might be <code>nil</code>? Unsustainable!</p>
-
-<p>So this is the final and best reason why I prefer <em>my</em> way over Ruby&#39;s built-in way. Thoughtful questions, comments, and vitriol all welcome.</p>
+<p>So this is the final and best reason why I prefer <em>my</em> way over Ruby&rsquo;s built-in way. Thoughtful questions, comments, and vitriol all welcome.</p>
 
         </article>
     </section>

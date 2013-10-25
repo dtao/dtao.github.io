@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao - The thing about opinionated tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/idea.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <section id="content">
+        <div id="voting">
+            <div class="voting-box">
+                <button id="vote-up"></button>
+                <div id="upvote-count">...</div>
+            </div>
+            <div class="voting-box">
+                <button id="vote-down"></button>
+                <div id="downvote-count">...</div>
+            </div>
+        </div>
+
+        <article id="idea">
+            <h1>The thing about opinionated tools</h1>
+            <p><a href="http://codeclimate.com/">CodeClimate</a> just announced support for JavaScript projects yeseterday. As the maintainer of a fairly popular (well, up-and-coming, maybe) JavaScript project&mdash;<a href="http://danieltao.com/lazy.js/">Lazy.js</a>&mdash;I thought I&rsquo;d give it a try. I&rsquo;d heard of CodeClimate before (its primary audience up till now has been the Ruby community) but never used it. So take this with a grain of salt, because it&rsquo;s the perspective of someone completely new to the product.</p>
+
+<p>Right off the bat I saw that Lazy.js gets an F due to the complexity of the file <strong>lazy.js</strong>. A bit disappointing to see (who wants to get an F?) but not particularly surprising either. Out of curiosity, I checked on both Lo-Dash and Underscore (Lazy.js&rsquo;s &ldquo;competitors&rdquo; in a way); sure enough, both also got Fs due to the complexity in their main files (<strong>lodash.js</strong> and <strong>underscore.js</strong>). I was actually half-surprised by Underscore&rsquo;s F as it&rsquo;s a much more concise library than either Lazy.js or Lo-Dash. But in the grand scheme of things, I suppose it&rsquo;s still a lot more complex than your run-of-the-mill JavaScript file.</p>
+
+<p>There are certainly other things besides complexity&mdash;the tool spotted a bunch of lint issues that I&rsquo;m actually happy to fix in Lazy.js&mdash;but CodeClimate indicates that complexity is the main issue.</p>
+
+<p>OK, soapbox time for a minute. Using opinionated analysis tools like this has its pros and cons; I don&rsquo;t think that&rsquo;s a controversial thing to say. For beginners, certainly, opinionated tools are a good thing in my opinion. I would compare it to when you&rsquo;re just starting out in a new job. Basically, <em>everyone</em> else on the team knows more than you, so it&rsquo;s helpful for someone to just say &ldquo;Look, this is how we do things here. X is right, Y is wrong,&rdquo; etc. etc. A statement of rules can be more helpful than a nuanced explanation at this stage.</p>
+
+<p>Eventually, though, you aren&rsquo;t a beginner anymore. And a tool is hardly a substitute for a wise mentor. So there is this problematic case I&rsquo;ve seen where devs lean on these analysis tools and they completely replace critical thinking. For example there are code coverage tools that motivate some devs to seek 100% coverage, for its own sake. Never mind prioritizing the value of 100% coverage on a spectrum including other much more urgent matters. There are also tools that say, &ldquo;Don&rsquo;t use this style; it&rsquo;s considered bad practice&rdquo; or whatever. Fine, but why? The tool won&rsquo;t tell you. Maybe you can find it on an online discussion somewhere if you&rsquo;re lucky. And when you understand the <em>why</em> invariably you also learn that there can be exceptions. Then suddenly the tool starts annoying you.</p>
+
+<p>When you&rsquo;re a child you just believe everything adults tell you. It&rsquo;s more efficient that way. Our species evolved (I guess) so children get all their knowledge from adults, who are generally much more knowledgable and so it&rsquo;s fine. Better than question everything you hear, which would just be a barrier to learning so young.</p>
+
+<p>But we grow out of this. So when CodeClimate tells me a file is too complex, I think, <em>So what does it want?</em> It wants me to chop up the file into lots of little files. But what is more complex: a file where every reference can be found in the same file (and using a decent text editor, navigating between these locations is seamless), or a collection of files where something referenced in one file might be in another file? In the latter case you can often sort of guess where something might be located based on file names; and there is probably some &ldquo;index&rdquo; file that sorts out dependencies and stuff. And this comes with plenty of benefits. But I don&rsquo;t think it&rsquo;s necessarily the best way to do things.</p>
+
+<p>With Lazy.js, I originally actually did things this way. I had every sequence type in its own file, sort of like you would expect with classes in, say, a Java project. I&rsquo;ve actually gone back and forth on this a few times. Where I&rsquo;ve currently landed is that I slightly prefer the single file approach. One reason is that back when I had many files, I would often modify one of the individual files, then run tests and forget that I hadn&rsquo;t rebuilt the lib so the change wasn&rsquo;t in effect. Or I would modify the big file and later rebuild and see my change disappear. It was my own stupidity, of course; but at the same time I felt like it was a needlessly treacherous situation. It was like I&rsquo;d set this trap for myself&hellip; but why?</p>
+
+<p>I get that the trend these days is to split up JavaScript libraries and have &ldquo;builds&rdquo; with modules and so forth. I&rsquo;m not against this per se, but again, I don&rsquo;t view it as necessarily correct. For one thing, I think it&rsquo;s applying a paradigm from a very different world to JavaScript in a way that&rsquo;s kind of weird. That paradigm is how compiled languages like C++ or Java work, where you have source and then you have software tools that take that source and build distributable packages from it. Thing is, in the C++ or Java world, these packages are a completely different beast&mdash;not human readable, binary instructions. In the JavaScript world, we have tools that take our JavaScript and spit out more JavaScript.</p>
+
+<p>So you have sort of a mess, in my mind. Which files am I supposed to edit? And is the output of the build supposed to be easy to read? I would hate for the answer to be no, as one of the things I love about JavaScript is being able to dig into the source and see how things work.</p>
+
+<p>There are libraries that are pretty heroic on the build front. Lo-Dash is a great example. The sheer number of builds that library has, to support all sorts of environments and requirements, is impressive. They&rsquo;re using this whole build concept to its full potential. But I view that as the exception, not the rule. In most cases I would say splitting up your library like this is over-engineering. This is JavaScript, people; let&rsquo;s not pretend it&rsquo;s Java.</p>
+
+<p>Anyway, this is obviously quite a ramble and ended up being way longer than I meant for it to get. Basically what I&rsquo;m trying to say is that I prefer to keep Lazy.js as just one big file. Or anyway, that&rsquo;s my stance for now. But if I end up flip-flopping again, it&rsquo;ll be because I thought about it and reconsidered the advantages of splitting it up. Or maybe because someone much smarter than I am convinced me it&rsquo;s the right thing to do. I don&rsquo;t want it to be because a tool gave me an F and I just want to get an A&mdash;based on an opinionated system that isn&rsquo;t necessarily appropriate for me.</p>
+
+<p>I&rsquo;m also just realizing that this probably sounds really hostile towards CodeClimate. Not my intention! I actually think it&rsquo;s a really impressive tool, and my gut tells me it&rsquo;s extremely useful on probably 9 out of 10 projects. In particular I would expect it to be extremely valuable for <em>applications</em>, where the developers are mainly trying to build something and keep the quality up as they go. Especially with Rails, which is a convention-based framework to begin with (so it comes with a whole set up opinions you presumably buy into just by virtue of using it). I guess I mainly just wanted to say the part about analysis tools and make my abstract point that we need opinionated guidance when we&rsquo;re starting out but there comes a point when we outgrow it.</p>
+
+        </article>
+    </section>
+
+    <section id="comments">
+        <div id="disqus_thread"></div>
+    </section>
+
+    <footer>
+        <span id="path">ideas/thing-about-opinionated-tools.html</span>
+        <a href="/ideas">Back to ideas</a>
+    </footer>
+</body>
+
+</html>
