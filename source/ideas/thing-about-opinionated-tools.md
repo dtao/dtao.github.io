@@ -1,5 +1,5 @@
 ---
-title: CodeClimate and JavaScript
+title: The thing about opinionated tools
 date: 2013-10-25
 ---
 
