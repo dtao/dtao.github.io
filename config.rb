@@ -15,7 +15,7 @@ end
 page "/ideas", :layout => false
 
 set :markdown_engine, :redcarpet
-set :markdown, :fenced_code_blocks => true
+set :markdown, { :fenced_code_blocks => true, :smartypants => true }
 
 activate :directory_indexes if environment == :development
 activate :syntax
