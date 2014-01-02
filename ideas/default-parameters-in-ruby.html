@@ -24,13 +24,13 @@
         <article id="idea">
             <h1>Default parameters in Ruby</h1>
             <p>The idiomatic way of providing default parameter values in Ruby is to use the language&rsquo;s built-in facility:</p>
-<pre class="highlight ruby"><span class="k">def </span><span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="no">DEFAULT_OPTIONS</span><span class="p">)</span>
+<pre class="highlight ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="no">DEFAULT_OPTIONS</span><span class="p">)</span>
   <span class="n">do_something</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:bar</span><span class="o">]</span><span class="p">)</span>
 <span class="k">end</span>
 </pre>
 <p>I actually prefer doing things slightly differently, though it might make some Ruby programmers unhappy:</p>
-<pre class="highlight ruby"><span class="k">def </span><span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
-  <span class="n">options</span> <span class="o">||=</span> <span class="no">DEFAULT_OPTIONS</span><span class="nf">.dup</span>
+<pre class="highlight ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+  <span class="n">options</span> <span class="o">||=</span> <span class="no">DEFAULT_OPTIONS</span><span class="p">.</span><span class="nf">dup</span>
   <span class="n">do_something</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:bar</span><span class="o">]</span><span class="p">)</span>
 <span class="k">end</span>
 </pre>
@@ -43,9 +43,9 @@
 <h2>Reason 2: The idiomatic way is open to side effects</h2>
 
 <p>The idiomatic way, where you have <code>options=DEFAULT_OPTIONS</code>, causes a default object to be passed in to the method, which can cause unexpected behavior if you get mutate-happy with your Ruby:</p>
-<pre class="highlight ruby"><span class="k">def </span><span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="no">DEFAULT_OPTIONS</span><span class="p">)</span>
-  <span class="c1"># In the default case, you&#39;re changing DEFAULT_OPTIONS here!</span>
-  <span class="n">options</span><span class="nf">.merge!</span><span class="p">(</span><span class="n">some_other_options</span><span class="p">())</span>
+<pre class="highlight ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="no">DEFAULT_OPTIONS</span><span class="p">)</span>
+  <span class="c1"># In the default case, you're changing DEFAULT_OPTIONS here!</span>
+  <span class="n">options</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="n">some_other_options</span><span class="p">())</span>
   <span class="n">do_something</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
 <span class="k">end</span>
 </pre>
@@ -56,14 +56,14 @@
 <p>It&rsquo;s also counterintuitive to me that this isn&rsquo;t just a one-time setting of a default value; the default value is treated as an <em>expression</em> which will be evaluated whenever the method is called. To understand what I mean, consider this simple program:</p>
 <pre class="highlight ruby"><span class="vi">@counter</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="k">def </span><span class="nf">get_id</span>
+<span class="k">def</span> <span class="nf">get_id</span>
   <span class="vi">@counter</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="k">end</span>
 
 <span class="c1"># My intuition would tell me this sets the default value of id to 1,</span>
 <span class="c1"># for all subsequence calls; but in fact it calls get_id whenever</span>
 <span class="c1"># print_id is called without a parameter.</span>
-<span class="k">def </span><span class="nf">print_id</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">print_id</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">)</span>
   <span class="nb">puts</span> <span class="nb">id</span>
 <span class="k">end</span>
 

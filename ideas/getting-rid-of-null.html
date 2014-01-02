@@ -57,7 +57,7 @@ damage in the last forty years.</p>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span><span class="s">&quot;str&quot;</span><span class="p">);</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span><span class="s">"str"</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">str</span><span class="p">[</span><span class="n">str</span><span class="p">.</span><span class="n">Length</span> <span class="p">/</span> <span class="m">2</span><span class="p">];</span>
@@ -103,7 +103,7 @@ damage in the last forty years.</p>
 <p>Now, our <code>GetMiddleChar</code> method from earlier becomes:</p>
 <pre class="highlight csharp"><span class="kt">char</span> <span class="nf">GetMiddleChar</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// str can&#39;t be null, so we can dive straight into the actual logic!
+  <span class="c1">// str can't be null, so we can dive straight into the actual logic!
 </span>  <span class="k">return</span> <span class="n">str</span><span class="p">[</span><span class="n">str</span><span class="p">.</span><span class="n">Length</span> <span class="p">/</span> <span class="m">2</span><span class="p">];</span>
 <span class="p">}</span>
 </pre>
