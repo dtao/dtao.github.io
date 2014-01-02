@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao - Testing private methods</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="/stylesheets/ideas.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/idea.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <section id="content">
+        <div id="voting">
+            <div class="voting-box">
+                <button id="vote-up"></button>
+                <div id="upvote-count">...</div>
+            </div>
+            <div class="voting-box">
+                <button id="vote-down"></button>
+                <div id="downvote-count">...</div>
+            </div>
+        </div>
+
+        <article id="idea">
+            <h1>Testing private methods</h1>
+            <p>I&rsquo;m currently working on a library called <a href="https://github.com/dtao/autodoc">Autodoc</a>. It serves multiple purposes<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup>, one of which is to make testing your JavaScript code dead simple. Here&rsquo;s an example of how you use it:</p>
+<pre class="highlight javascript"><span class="cm">/**
+ * Checks if a number is even.
+ *
+ * @private
+ * @examples
+ * isEven(2) // =&gt; true
+ * isEven(1) // =&gt; false
+ */</span>
+<span class="kd">function</span> <span class="nx">isEven</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>Now, one of the features of the library is that it even lets you test &ldquo;private&rdquo; functions, meaning functions your library doesn&rsquo;t expose (hence the <code>@private</code> tag in the above example). To me, this is a very useful feature.</p>
+
+<p>Well, apparently not everyone feels that way. This recently happened on Twitter and it got me feeling a bit defensive:</p>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/search?q=%23autodoc&amp;src=hash">#autodoc</a>: &ldquo;Hey, this function is private but I want to test it anyway.&rdquo; &hellip; <a href="https://twitter.com/search?q=%23sigh&amp;src=hash">#sigh</a> NO</p>&mdash; derickbailey (@derickbailey) <a href="https://twitter.com/derickbailey/statuses/418753130965106688">January 2, 2014</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>A quick <a href="https://www.google.com/search?q=should+i+test+private+methods">Google search for &ldquo;Should I test private methods&rdquo;</a> found mostly variations on a single argument. Hopefully I&rsquo;m not taking too much liberty in paraphrasing the argument as follows:</p>
+
+<ol>
+<li>Private methods are implementation details and shouldn&rsquo;t be tested</li>
+<li>If a method <em>does</em> need tests, it should be public (and potentially refactored into a separate class)</li>
+</ol>
+
+<p>To me this line of reasoning is perfectly fine as a general rule of thumb, which I&rsquo;m sure applies in a lot of cases. That doesn&rsquo;t mean I accept it as universal.</p>
+
+<p>Rather than make a direct counter-argument, let me instead examine a real-world example from my own code, to hopefully illustrate where I&rsquo;m coming from.</p>
+
+<h2>Testing a custom Set class in Lazy.js</h2>
+
+<p>My most well-known library, <a href="https://github.com/dtao/lazy.js">Lazy.js</a>, includes several functions that involve <em>uniqueness</em>; e.g. <code>uniq()</code>, <code>union()</code>, <code>intersection()</code>. For these methods Lazy internally uses a custom <code>Set</code> class, which is private<sup id="fnref2"><a href="#fn2" rel="footnote">2</a></sup>. It&rsquo;s private because&mdash;in my opinion&mdash;it simply doesn&rsquo;t belong as part of the library&rsquo;s public API. However, it also has tests, because it&rsquo;s a sufficiently complex piece of functionality that I want to ensure works properly.</p>
+
+<p>Let&rsquo;s consider the possible angles from which a member of the don&rsquo;t-test-private-methods school of thought might say this is wrong.</p>
+
+<p><strong>You should expose a public <code>Lazy.Set</code> class</strong></p>
+
+<p>I disagree. As a library, Lazy is about composing functional transformations into sequences. It makes no promises of providing any specific data structures. To expose one would be to bloat the API with noise or &ldquo;mass&rdquo; that distracts from the library&rsquo;s core purpose.</p>
+
+<p>Aside from bloat, though&mdash;which is arguably mostly an aesthetic matter&mdash;there is the issue of responsibility. If I expose a class from my library, then I should reasonably be expected to document and support that part of the API, to the point where removing it would break backwards compatibility and warrant a <a href="http://semver.org/">major version change</a>. For something that conceptually doesn&rsquo;t fit with the rest of the library to begin with, I think that would be silly. Better to keep it private and reserve the freedom to remove it completely if I come up with a different implementation altogether.</p>
+
+<p><strong>Fine, but then create a separate <code>Set</code> library and depend on that from within Lazy</strong></p>
+
+<p>An open source JavaScript library is much more convenient and accessible to developers if it has no dependencies. Imagine if in order to use lazy.js you needed to require a separate set.js file first.</p>
+
+<p>Now, that isn&rsquo;t to say that I shouldn&rsquo;t <em>copy</em><sup id="fnref3"><a href="#fn3" rel="footnote">3</a></sup> the <code>Set</code> code to a separate project and share that, while redundantly keeping the same code in Lazy. I would maybe <em>consider</em> that, but my motivation to do so is quite low since <a href="https://github.com/component/set">there are already set libraries out there</a>.</p>
+
+<p><strong>You could create a separate <code>Set</code> library but pull it into lazy.js as a build step to keep zero run-time dependencies</strong></p>
+
+<p>Yes, I could do that. I&rsquo;ll be honest, though; to me that just sounds like an overly complicated solution with almost no payoff given the points I&rsquo;ve already made. I mean, seriously, what would be the <em>actual</em> benefit to doing that, aside from quelling some inner OCD?</p>
+
+<p>There would also be obvious downsides to this approach, beyond mere complexity (which is a big enough downside on its own). For one, this would almost certainly cause confusion among developers. I might receive a pull request within Lazy to modify the Set class and have to redirect the submitter to a separate repo. For what? Again, other set libraries exist.</p>
+
+<p><strong>Well, you still shouldn&rsquo;t need to write tests for <code>Set</code> directly; just test the publicly exposed sites where it&rsquo;s used</strong></p>
+
+<p>I personally find TDD to be a very helpful technique (sometimes). For me, writing some tests, implementing a bit, writing more tests to cover the corner cases, and buliding up as I go is a powerful workflow. So this is how I implemented the <code>Set</code> class within Lazy, and it&rsquo;s something that Autodoc facilitates really nicely.</p>
+
+<p>Let&rsquo;s imagine I followed this advice and said, &ldquo;OK, since <code>Set</code> is private I shouldn&rsquo;t be testing it because it&rsquo;s an implementation detail. The tests for <code>uniq()</code>, <code>union()</code>, etc. should cover it.&rdquo; To me this is basically disregarding the whole point of unit tests. The further downstream you catch a bug, the more time you waste on troubleshooting.</p>
+
+<p><strong>TDD is fine; but once you&rsquo;ve figured out your implementation you should delete the tests</strong></p>
+
+<p>Honestly I doubt anyone would seriously say this. It&rsquo;s just the last thing I can think of someone suggesting in this imaginary conversation. To which I could only respond by throwing my hands up in the air and going with &ldquo;Let&rsquo;s agree to disagree!&rdquo;</p>
+
+<h2>To test or not to test</h2>
+
+<p>Suppose you&rsquo;re building a car. This is obviously a complex piece of machinery. Perhaps you&rsquo;ve developed some custom parts that go inside the car. And suppose I were to say, &ldquo;Don&rsquo;t test those parts.&rdquo; You would say, <em>What? Why noy?</em></p>
+
+<p>I might say, &ldquo;You should know they function properly as long as the car drives correctly.&rdquo; That would be silly: you&rsquo;d be setting yourself up to catch potential problems much further downstream than necessary.</p>
+
+<p>I might say, &ldquo;If these parts are sufficiently complex then you should actually start up a separate business selling them directly.&rdquo; That would also be silly. They&rsquo;re not <em>so special</em> as to warrant an entirely separate business. However, I also don&rsquo;t want to rely on an external vendor for similar parts.</p>
+
+<p>I think having custom parts, that I don&rsquo;t sell directly, is fine. And I think testing them is just smart.</p>
+
+<p>In the end: if you have small, testable pieces, then test them. You are only doing yourself a favor. Whether or not those pieces are private is a totally separate question.</p>
+
+<p>If somebody says, &ldquo;don&rsquo;t test private functions,&rdquo; maybe he/she is speaking from valid experience that applies in some cases. Maybe they&rsquo;ve seen a lot of private code that should actually be refactored, exposed, and tested properly. Maybe they&rsquo;ve seen a lot of tests for trivial implementation details that provide no real value. Neither of these kinds of experience are all-encompassing. Nor should the ensuing &ldquo;don&rsquo;t test private methods&rdquo; dogma be applied as a blanket rule to all software development.</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>Arguably it does more than it should, actually. But then <em>doing a lot</em> is sort of the point.&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
+
+<li id="fn2">
+<p>Of course JavaScript doesn&rsquo;t have a <code>private</code> keyword; what I mean is the class isn&rsquo;t exposed in any way to consumers of the library.&nbsp;<a href="#fnref2" rev="footnote">&#8617;</a></p>
+</li>
+
+<li id="fn3">
+<p><em>Gasp!</em> Copy source code?! Well, in this case it would be either that or nothing. If you have a strong argument against what I&rsquo;m saying, which takes into account the points I&rsquo;m making, leave a comment and let me know!&nbsp;<a href="#fnref3" rev="footnote">&#8617;</a></p>
+</li>
+
+</ol>
+</div>
+
+        </article>
+    </section>
+
+    <section id="comments">
+        <div id="disqus_thread"></div>
+    </section>
+
+    <footer>
+        <span id="path">ideas/testing-private-methods.html</span>
+        <a href="/ideas">Back to ideas</a>
+    </footer>
+</body>
+
+</html>
