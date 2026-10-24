@@ -25,7 +25,7 @@ Well, apparently not everyone feels that way. This recently happened on Twitter 
 
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/search?q=%23autodoc&amp;src=hash">#autodoc</a>: &ldquo;Hey, this function is private but I want to test it anyway.&rdquo; &hellip; <a href="https://twitter.com/search?q=%23sigh&amp;src=hash">#sigh</a> NO</p>&mdash; derickbailey (@derickbailey) <a href="https://twitter.com/derickbailey/statuses/418753130965106688">January 2, 2014</a></blockquote>
 
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 A quick [Google search for "Should I test private methods"](https://www.google.com/search?q=should+i+test+private+methods) found mostly variations on a single argument. Hopefully I'm not taking too much liberty in paraphrasing the argument as follows:
 

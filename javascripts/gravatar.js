@@ -22,7 +22,7 @@ function loadRandomBackdrop() {
     document.body.className = 'loaded';
   });
 
-  backdrop.src = 'http://www.gravatar.com/avatar/' + getRandomHash() + '?d=identicon&s=500';
+  backdrop.src = 'https://www.gravatar.com/avatar/' + getRandomHash() + '?d=identicon&s=500';
 }
 
 loadRandomBackdrop();
