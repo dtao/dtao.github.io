@@ -21,47 +21,6 @@
   pre code { color: inherit; font-size: inherit; }
 }
 
-#voting {
-  float: right;
-  min-width: 120px;
-  text-align: center;
-
-  .voting-box {
-    margin-bottom: 12px;
-  }
-
-  button {
-    @include transition(all, 0.5s);
-    @include translucent(0.5);
-
-    display: inline-block;
-    height: 64px;
-    width: 64px;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    vertical-align: middle;
-    cursor: pointer;
-
-    &:hover {
-      @include transition(all, 0.5s);
-      @include translucent(1);
-    }
-
-    &.voted {
-      @include translucent(1);
-    }
-
-    &#vote-up {
-      background: url('/images/vote-up.png') no-repeat center;
-    }
-
-    &#vote-down {
-      background: url('/images/vote-down.png') no-repeat center;
-    }
-  }
-}
-
 footer {
   padding: 1ex 1em;
   color: #777;
