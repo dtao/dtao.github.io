@@ -1,0 +1,7 @@
+<% content_for(:assets) do %>
+    <%= javascript_include_tag current_resource.path.chomp('.html') %>
+<% end %>
+
+<% wrap_layout(:tip) do %>
+    <%= yield %>
+<% end %>

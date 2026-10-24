@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao - <%= current_resource.data['title'] %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <%= stylesheet_link_tag "tip" %>
+    <%= yield_content :assets %>
+</head>
+
+<body>
+    <article>
+        <header>
+            <h1><%= current_resource.data['title'] %></h1>
+        </header>
+
+        <%= yield %>
+    </article>
+
+    <footer>
+        <a href="/tips">Back to tips</a>
+    </footer>
+</body>
+
+</html>

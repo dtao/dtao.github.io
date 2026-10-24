@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao - <%= current_resource.data['title'] %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <%= stylesheet_link_tag "ideas" %>
+    <%= javascript_include_tag "idea" %>
+</head>
+
+<body>
+    <section id="content">
+        <div id="voting">
+            <div class="voting-box">
+                <button id="vote-up"></button>
+                <div id="upvote-count">...</div>
+            </div>
+            <div class="voting-box">
+                <button id="vote-down"></button>
+                <div id="downvote-count">...</div>
+            </div>
+        </div>
+
+        <article id="idea">
+            <h1><%= current_resource.data['title'] %></h1>
+            <%= yield %>
+        </article>
+    </section>
+
+    <section id="comments">
+        <div id="disqus_thread"></div>
+    </section>
+
+    <footer>
+        <span id="path"><%= current_resource.path %></span>
+        <a href="/ideas">Back to ideas</a>
+    </footer>
+</body>
+
+</html>

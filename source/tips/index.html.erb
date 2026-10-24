@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao - Tips</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <%= stylesheet_link_tag "tips" %>
+    <%= javascript_include_tag "lib/ga.js" unless environment == :development %>
+</head>
+
+<body>
+    <h1>Tips</h1>
+
+    <section id="javascript">
+        <h2>JavaScript</h2>
+        <ul id="javascript-tips">
+            <li><a href="/tips/javascript/prototype-is-your-friend">The Prototype is your friend</a></li>
+            <li><a href="/">Back</a></li>
+        </ul>
+    </section>
+
+    <section id="css">
+        <h2>CSS</h2>
+        <ul id="css-tips">
+            <li><a href="/tips/css/tooltips-without-javascript">Tooltips without JavaScript</a></li>
+            <li><a href="/">Back</a></li>
+        </ul>
+    </section>
+</body>
+
+</html>

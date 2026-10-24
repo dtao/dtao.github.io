@@ -1,0 +1,54 @@
+@import "common.scss";
+
+@mixin tooltip {
+  position: fixed;
+
+  background-color: #000;
+  color: #fff;
+
+  @include translucent(0.75);
+
+  strong {
+    color: red;
+  }
+}
+
+span.tooltip {
+  @include tooltip;
+
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+
+  @include transition(bottom, 0.5s);
+}
+
+span.tooltip-right {
+  @include tooltip;
+
+  right: -300px;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  padding: 20px;
+
+  @include transition(right, 0.5s);
+}
+
+span.has-tooltip,
+span.has-tooltip-right {
+  color: #004;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+span.has-tooltip:hover + span.tooltip {
+  bottom: 0;
+}
+
+span.has-tooltip-right:hover + span.tooltip-right {
+  right: 0;
+}

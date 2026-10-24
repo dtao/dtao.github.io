@@ -1,0 +1,7 @@
+<% wrap_layout(:tip) do %>
+    <% content_for(:assets) do %>
+        <%= stylesheet_link_tag current_resource.path.chomp('.html') %>
+    <% end %>
+
+    <%= yield %>
+<% end %>

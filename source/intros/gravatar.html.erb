@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <%= stylesheet_link_tag "gravatar" %>
+    <%= javascript_include_tag "lib/ga.js" unless environment == :development %>
+</head>
+
+<body class="loading">
+    <img id="backdrop" />
+
+    <main>
+        <h1>Dan Tao</h1>
+
+        <nav>
+            <ul>
+                <li><a href="http://philosopherdeveloper.com">Blog</a></li>
+                <li><a href="https://github.com/dtao">Code</a></li>
+                <li><a href="https://soundcloud.com/dantao">Music</a></li>
+                <li><a href="/ideas">Ideas</a></li>
+                <li><a href="/tips">Tips</a></li>
+            </ul>
+        </nav>
+    </main>
+
+    <footer>
+        <a href="/ideas/abusing-gravatar">About this intro</a>
+        <a href="https://github.com/dtao/dtao.github.io">Source</a>
+    </footer>
+
+    <%= javascript_include_tag "gravatar" %>
+</body>
+
+</html>
