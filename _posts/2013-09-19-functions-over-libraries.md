@@ -17,7 +17,7 @@ The library-based paradigm
 
 Recently a couple of libraries have undertaken the major task of modularization. I'm not sure if
 that's a "word"; but it should be clear enough what I mean: breaking down their various
-functionalities into individually consumable parts. [Lo-Dash](http://lodash.com/) is the one I'm
+functionalities into individually consumable parts. [Lo-Dash](https://lodash.com/) is the one I'm
 most acutely aware of because I follow [@jdalton](https://twitter.com/jdalton) on Twitter and he's
 been pretty vocal lately about their efforts on this front.
 
@@ -52,7 +52,7 @@ guessing most devs would view this as the "right" way to share code.
 
 Here's the other way, which I think most devs would consider a "hacky" or just flat-out "wrong" way
 to share code: by posting snippets online, for others to copy/paste. This is the stuff of
-[StackOverflow](http://stackoverflow.com/) answers, blog posts, and
+[StackOverflow](https://stackoverflow.com/) answers, blog posts, and
 [Gists](https://gist.github.com/).
 
 The second way is perceived as hacky because it isn't very standardized. There are no package

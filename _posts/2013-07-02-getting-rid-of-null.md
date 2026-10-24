@@ -16,9 +16,9 @@ Introducing `null` undermines the stability of all of this. The `f` function mig
 - Perform an explicit check (defensive programming, which is the preferred strategy with statically typed languages)
 - Just ignore the problem (which I think happens quite a bit with dynamically typed languages)
 
-The first approach is very costly, as it wastes development time with lots of boilerplate and clutters up the code with logic that has no business value. The second approach is obviously also risky, though I actually think it's sometimes the right way to go with the tools we currently have. Either way, the presence of `null` (or `nil`) increases the complexity of the code (i.e, [reduces comprehensibility](http://philosopherdeveloper.com/posts/optimize-for-comprehensibility.html)) in a self-propagating manner that can spiral completely out of control.
+The first approach is very costly, as it wastes development time with lots of boilerplate and clutters up the code with logic that has no business value. The second approach is obviously also risky, though I actually think it's sometimes the right way to go with the tools we currently have. Either way, the presence of `null` (or `nil`) increases the complexity of the code (i.e, [reduces comprehensibility](https://philosopherdeveloper.com/posts/optimize-for-comprehensibility.html)) in a self-propagating manner that can spiral completely out of control.
 
-If you don't agree with me, listen to what [Tony Hoare has to say on the matter](http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare):
+If you don't agree with me, listen to what [Tony Hoare has to say on the matter](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare):
 
 > My goal was to ensure that all use of references should be absolutely safe, with checking
 > performed automatically by the compiler. But I couldn't resist the temptation to put in a null
@@ -43,7 +43,7 @@ char GetMiddleChar(string str)
 }
 ```
 
-Yeah, I thought so. This is the [defensive programming](http://en.wikipedia.org/wiki/Defensive_programming) I mentioned a moment ago. Most of us read code like this and nod our heads; it seems reasonable. Scratch that; it actually seems *right*.
+Yeah, I thought so. This is the [defensive programming](https://en.wikipedia.org/wiki/Defensive_programming) I mentioned a moment ago. Most of us read code like this and nod our heads; it seems reasonable. Scratch that; it actually seems *right*.
 
 But what if we had to do this with primitives? For example, what if every `int` value in some programming language were either a 32-bit integer or... I don't know, let's say `false`. Then we might see methods like this:
 
@@ -69,7 +69,7 @@ This is insane, and yet it's basically how we deal with `null` all the time.
 The known solution, and a better solution
 -----------------------------------------
 
-I am aware of languages where this problem is addressed by the introduction of non-null references. The [Spec# language](http://en.wikipedia.org/wiki/Spec_Sharp), for example, allows you to do this:
+I am aware of languages where this problem is addressed by the introduction of non-null references. The [Spec# language](https://en.wikipedia.org/wiki/Spec_Sharp), for example, allows you to do this:
 
 ```csharp
 // text cannot be assigned a null reference

@@ -3,7 +3,7 @@ title: The thing about opinionated tools
 date: 2013-10-25
 ---
 
-[CodeClimate](http://codeclimate.com/) just announced support for JavaScript projects yeseterday. As the maintainer of a fairly popular (well, up-and-coming, maybe) JavaScript project---[Lazy.js](http://danieltao.com/lazy.js/)---I thought I'd give it a try. I'd heard of CodeClimate before (its primary audience up till now has been the Ruby community) but never used it. So take this with a grain of salt, because it's the perspective of someone completely new to the product.
+[CodeClimate](https://codeclimate.com/) just announced support for JavaScript projects yeseterday. As the maintainer of a fairly popular (well, up-and-coming, maybe) JavaScript project---[Lazy.js](https://danieltao.com/lazy.js/)---I thought I'd give it a try. I'd heard of CodeClimate before (its primary audience up till now has been the Ruby community) but never used it. So take this with a grain of salt, because it's the perspective of someone completely new to the product.
 
 Right off the bat I saw that Lazy.js gets an F due to the complexity of the file **lazy.js**. A bit disappointing to see (who wants to get an F?) but not particularly surprising either. Out of curiosity, I checked on both Lo-Dash and Underscore (Lazy.js's "competitors" in a way); sure enough, both also got Fs due to the complexity in their main files (**lodash.js** and **underscore.js**). I was actually half-surprised by Underscore's F as it's a much more concise library than either Lazy.js or Lo-Dash. But in the grand scheme of things, I suppose it's still a lot more complex than your run-of-the-mill JavaScript file.
 

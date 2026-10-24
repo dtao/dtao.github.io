@@ -5,7 +5,7 @@ date: 2013-07-31
 
 Here's a sci-fi movie idea that I think would be pretty sweet. If any filmmakers are reading this, please create this movie and I'll take a modest 50% of the revenue. (That's how this works, right?)
 
-This one's sort of like [*The Truman Show*](http://www.imdb.com/title/tt0120382/) meets [*The Matrix*](http://www.imdb.com/title/tt0133093) meets [*Contact*](http://www.imdb.com/title/tt0118884).
+This one's sort of like [*The Truman Show*](https://www.imdb.com/title/tt0120382/) meets [*The Matrix*](https://www.imdb.com/title/tt0133093) meets [*Contact*](https://www.imdb.com/title/tt0118884).
 
 I got the idea from [a trailer I just saw for the movie *Gravity*](http://trailers.apple.com/trailers/wb/gravity/), which looks pretty cool. In the trailer, an astronaut is hurled from a malfunctioning spacecraft and shown careening off into space. It's a pretty horrifying prospect, obviously.
 
@@ -15,7 +15,7 @@ Clearly, she has questions. Through some sci-fi wizardry, the aliens are able to
 
 The aliens explain that the universe is actually nothing like we think. There is a bubble around our world that creates a powerful illusion, which is responsible for all of our false knowledge about the cosmos. What our telescopes see is a projection cast by this bubble. When we send signals out, the bubble intercepts them and sends back signals that make us think that there are stars, galaxies, etc. out there; but there aren't. Even our physical objects--like the Mars rovers, or the Voyager space probes--are absorbed by the bubble, which somehow analyzes them and then sends down signals to make us *think* they're functioning as designed.
 
-So when we see pictures of "Mars" taken by Curiosity, for example, those pictures aren't real. Curiosity was consumed by the bubble, which now periodically beams data down to NASA in accordance with what the scientists at NASA expect to see from the rover's photography equipment. Similarly, Voyager--which we believe is [nearing the edge of the solar system](http://www.nytimes.com/2013/06/28/science/space/going-going-still-going-voyager-1-at-solar-systems-edge.html)--actually vanished long ago; and again the data that we think we're receiving from its measuring equipment is actually a product of the bubble's illusory systems.
+So when we see pictures of "Mars" taken by Curiosity, for example, those pictures aren't real. Curiosity was consumed by the bubble, which now periodically beams data down to NASA in accordance with what the scientists at NASA expect to see from the rover's photography equipment. Similarly, Voyager--which we believe is [nearing the edge of the solar system](https://www.nytimes.com/2013/06/28/science/space/going-going-still-going-voyager-1-at-solar-systems-edge.html)--actually vanished long ago; and again the data that we think we're receiving from its measuring equipment is actually a product of the bubble's illusory systems.
 
 Right. So, clearly this undermines basically everything we think we know about the universe. Anyway, that's the starting premise. I think there are many ways the story could go from there; here's one possibility.
 

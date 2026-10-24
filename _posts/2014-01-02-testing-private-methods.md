@@ -46,7 +46,7 @@ Let's consider the possible angles from which a member of the don't-test-private
 
 I disagree. As a library, Lazy is about composing functional transformations into sequences. It makes no promises of providing any specific data structures. To expose one would be to bloat the API with noise or "mass" that distracts from the library's core purpose.
 
-Aside from bloat, though---which is arguably mostly an aesthetic matter---there is the issue of responsibility. If I expose a class from my library, then I should reasonably be expected to document and support that part of the API, to the point where removing it would break backwards compatibility and warrant a [major version change](http://semver.org/). For something that conceptually doesn't fit with the rest of the library to begin with, I think that would be silly. Better to keep it private and reserve the freedom to remove it completely if I come up with a different implementation altogether.
+Aside from bloat, though---which is arguably mostly an aesthetic matter---there is the issue of responsibility. If I expose a class from my library, then I should reasonably be expected to document and support that part of the API, to the point where removing it would break backwards compatibility and warrant a [major version change](https://semver.org/). For something that conceptually doesn't fit with the rest of the library to begin with, I think that would be silly. Better to keep it private and reserve the freedom to remove it completely if I come up with a different implementation altogether.
 
 **Fine, but then create a separate `Set` library and depend on that from within Lazy**
 
