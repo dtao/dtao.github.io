@@ -1,6 +1,13 @@
 title: Dan Tao
 url: https://danieltao.com
 repository: dtao/dtao.github.io
+author: Dan Tao
+
+feed:
+  posts_limit: 100
+
+plugins:
+  - jekyll-feed
 
 markdown: kramdown
 kramdown:
