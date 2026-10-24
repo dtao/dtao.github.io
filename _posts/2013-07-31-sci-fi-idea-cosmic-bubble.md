@@ -7,7 +7,7 @@ Here's a sci-fi movie idea that I think would be pretty sweet. If any filmmakers
 
 This one's sort of like [*The Truman Show*](https://www.imdb.com/title/tt0120382/) meets [*The Matrix*](https://www.imdb.com/title/tt0133093) meets [*Contact*](https://www.imdb.com/title/tt0118884).
 
-I got the idea from [a trailer I just saw for the movie *Gravity*](http://trailers.apple.com/trailers/wb/gravity/), which looks pretty cool. In the trailer, an astronaut is hurled from a malfunctioning spacecraft and shown careening off into space. It's a pretty horrifying prospect, obviously.
+I got the idea from [a trailer I just saw for the movie *Gravity*](https://web.archive.org/web/20131106040403/http://trailers.apple.com/trailers/wb/gravity/), which looks pretty cool. In the trailer, an astronaut is hurled from a malfunctioning spacecraft and shown careening off into space. It's a pretty horrifying prospect, obviously.
 
 Now here's the idea: take a scenario sort of like that--an astronaut floating out uncontrollably, farther and farther from Earth--and then imagine that suddenly she reaches this *boundary*, like a portal of sorts. She goes through, and suddenly everything's different. She's in a completely different world now. Some alien scientists snatch her up and take her to a facility right away.
 

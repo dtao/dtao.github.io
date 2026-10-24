@@ -69,7 +69,7 @@ This is insane, and yet it's basically how we deal with `null` all the time.
 The known solution, and a better solution
 -----------------------------------------
 
-I am aware of languages where this problem is addressed by the introduction of non-null references. The [Spec# language](https://en.wikipedia.org/wiki/Spec_Sharp), for example, allows you to do this:
+I am aware of languages where this problem is addressed by the introduction of non-null references. The [Spec# language](https://web.archive.org/web/20140219000023/https://en.wikipedia.org/wiki/Spec_Sharp), for example, allows you to do this:
 
 ```csharp
 // text cannot be assigned a null reference

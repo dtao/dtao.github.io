@@ -21,7 +21,7 @@ Here's how I got it to work. The difference in light is accomplished via the CSS
 
 Then I add the property `box-shadow: inset 0 0 [blur radius] [spread radius] #000`, where *blur radius* and *spread radius* are 50% the size of the screen (where by "size" I mean the lesser of height and width--so that the shadow isn't overpowering). Unfortunately since the `box-shadow` property doesn't support pixel values for the radii this is where I needed to utilize JavaScript: by dynamically calculating these values on initial page load and subsequently whenever the window is resized.
 
-Now, what about the hovering? Surprisingly enough, JavaScript was *not* needed for this part. I put the `#shadow` element after the navigation links and used the [general sibling selector](https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_selectors) to modify the style of the element occurring *after* the `a:hover` selector:
+Now, what about the hovering? Surprisingly enough, JavaScript was *not* needed for this part. I put the `#shadow` element after the navigation links and used the [general sibling selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Subsequent-sibling_combinator) to modify the style of the element occurring *after* the `a:hover` selector:
 
 ```css
 a:hover ~ #shadow {

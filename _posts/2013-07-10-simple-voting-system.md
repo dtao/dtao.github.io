@@ -13,7 +13,7 @@ And one more thing: I didn't want to use Facebook, or LinkedIn, or any of those 
 2. They couple the ideas of *liking* with *sharing*, and I don't necessarily want to put "Share this with your Facebook friends!" here
 3. Some people have a negative reaction to those brands
 
-So I made one, called [Up/Down](http://up-down.herokuapp.com). It's **really** simple. There are two parts: the server (a Ruby app hosted on Heroku) and a tiny little JavaScript library. The JavaScript library lets you call to the server (using [JSONP](https://en.wikipedia.org/wiki/JSONP)) to see how many up/down votes your site has, and it lets you vote the current site up or down.
+So I made one, called [Up/Down](https://web.archive.org/web/20150122031516/http://up-down.herokuapp.com/). It's **really** simple. There are two parts: the server (a Ruby app hosted on Heroku) and a tiny little JavaScript library. The JavaScript library lets you call to the server (using [JSONP](https://en.wikipedia.org/wiki/JSONP)) to see how many up/down votes your site has, and it lets you vote the current site up or down.
 
 Obviously if you want a fool-proof system for this, you'd need to authenticate somehow. I figured: screw that. It would be nice, but it contributes to that big barrier I already mentioned. The current implementation just uses cookies. This prevents accidental duplicates but it doesn't prevent "malicious" duplicates (i.e., the user can always clear his or her cookies and vote again). I put the word "malicious" in quotes because... come on, this is a simple voting system. Who really cares?
 

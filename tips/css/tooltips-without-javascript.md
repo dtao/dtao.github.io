@@ -7,7 +7,7 @@ Here is <span class="has-tooltip">some text with a tooltip</span><span class="to
 
 How did we do this?
 
-It's actually pretty simple. This technique uses the [adjacent sibling selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_selectors):
+It's actually pretty simple. This technique uses the [adjacent sibling selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Next-sibling_combinator):
 
 ```css
 span.tooltip {
