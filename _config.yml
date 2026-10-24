@@ -1,0 +1,33 @@
+title: Dan Tao
+url: https://danieltao.com
+repository: dtao/dtao.github.io
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+sass:
+  style: compressed
+
+permalink: /ideas/:title.html
+
+defaults:
+  - scope:
+      type: posts
+    values:
+      layout: idea
+  - scope:
+      path: tips
+    values:
+      layout: tip
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+
+# Don't add the default GitHub Pages theme's stylesheet.
+theme: null

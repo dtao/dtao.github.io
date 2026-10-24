@@ -1,1 +1,28 @@
-function getRandomNumber(e){return Math.floor(Math.random()*e)}function getRandomHashChar(){var e="0123456789abcdef";return e.charAt(getRandomNumber(e.length))}function getRandomHash(){for(var e="";e.length<32;)e+=getRandomHashChar();return e}function loadRandomBackdrop(){var e=document.getElementById("backdrop");e.addEventListener("load",function(){document.body.className="loaded"}),e.src="http://www.gravatar.com/avatar/"+getRandomHash()+"?d=identicon&s=500"}loadRandomBackdrop();
+function getRandomNumber(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function getRandomHashChar() {
+  var hashChars = "0123456789abcdef";
+  return hashChars.charAt(getRandomNumber(hashChars.length));
+}
+
+function getRandomHash() {
+  var hash = '';
+  while (hash.length < 32) {
+    hash += getRandomHashChar();
+  }
+  return hash;
+}
+
+function loadRandomBackdrop() {
+  var backdrop = document.getElementById('backdrop');
+
+  backdrop.addEventListener('load', function() {
+    document.body.className = 'loaded';
+  });
+
+  backdrop.src = 'http://www.gravatar.com/avatar/' + getRandomHash() + '?d=identicon&s=500';
+}
+
+loadRandomBackdrop();

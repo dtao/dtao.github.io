@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao - {{ page.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="/stylesheets/ideas.css" rel="stylesheet" />
+    <script src="/javascripts/lib/disqus.js"></script>
+    <script src="/javascripts/lib/ga.js"></script>
+    <script src="/javascripts/lib/updown.js"></script>
+    <script src="/javascripts/idea.js"></script>
+</head>
+
+<body>
+    <section id="content">
+        <div id="voting">
+            <div class="voting-box">
+                <button id="vote-up"></button>
+                <div id="upvote-count">...</div>
+            </div>
+            <div class="voting-box">
+                <button id="vote-down"></button>
+                <div id="downvote-count">...</div>
+            </div>
+        </div>
+
+        <article id="idea">
+            <h1>{{ page.title }}</h1>
+            {{ content }}
+        </article>
+    </section>
+
+    <section id="comments">
+        <div id="disqus_thread"></div>
+    </section>
+
+    <footer>
+        <span id="path">{{ page.url | remove_first: "/" }}</span>
+        <a href="/ideas">Back to ideas</a>
+    </footer>
+</body>
+
+</html>

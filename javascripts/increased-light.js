@@ -1,1 +1,25 @@
-function getRule(e){for(var t=document.styleSheets[0].cssRules,n=0;n<t.length;++n)if(t[n].selectorText===e)return t[n];return null}function setBoxShadow(){var e=window.innerHeight,t=window.innerWidth,n=Math.min(e,t),a=getRule("#shadow");a.style.boxShadow="inset 0 0 "+2*n+"px "+n/2+"px #000";var s=getRule("main a:hover ~ #shadow");s.style.boxShadow="inset 0 0 "+n+"px "+n/3+"px #000"}setBoxShadow(),window.addEventListener("resize",setBoxShadow);
+function getRule(selector) {
+  var rules = document.styleSheets[0].cssRules;
+  for (var i = 0; i < rules.length; ++i) {
+    if (rules[i].selectorText === selector) {
+      return rules[i];
+    }
+  }
+  return null;
+}
+
+function setBoxShadow() {
+  var screenHeight = window.innerHeight,
+      screenWidth  = window.innerWidth,
+      size         = Math.min(screenHeight, screenWidth);
+
+  var shadowRule = getRule('#shadow');
+  shadowRule.style.boxShadow = 'inset 0 0 ' + (size * 2) + 'px ' + (size / 2) + 'px #000';
+
+  var hoverShadowRule = getRule('main a:hover ~ #shadow');
+  hoverShadowRule.style.boxShadow = 'inset 0 0 ' + size + 'px ' + (size / 3) + 'px #000';
+}
+
+setBoxShadow();
+
+window.addEventListener('resize', setBoxShadow);

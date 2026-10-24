@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dan Tao - {{ page.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="/stylesheets/tip.css" rel="stylesheet" />
+    {%- if page.stylesheet %}
+    <link href="{{ page.stylesheet }}" rel="stylesheet" />
+    {%- endif %}
+</head>
+
+<body>
+    <article>
+        <header>
+            <h1>{{ page.title }}</h1>
+        </header>
+
+        {{ content }}
+    </article>
+
+    <footer>
+        <a href="/tips">Back to tips</a>
+    </footer>
+</body>
+
+</html>
