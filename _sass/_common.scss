@@ -12,14 +12,10 @@ $color5: $red;
 
 @mixin translucent($opacity: 0) {
   opacity: $opacity;
-  filter: alpha(opacity=($opacity * 100));
 }
 
 @mixin transition($property, $interval) {
   transition: $property $interval;
-  -moz-transition: $property $interval;
-  -o-transition: $property $interval;
-  -webkit-transition: $property $interval;
 }
 
 @mixin colorize-children($child, $property: background-color, $darken: 0%) {
